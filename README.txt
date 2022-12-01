@@ -1,4 +1,4 @@
-Directory Structure hahahahaha
+Directory Structure hi
 -------------------
 css\              - Stylesheets CSS files for the template.
 images\           - Images used in template.
