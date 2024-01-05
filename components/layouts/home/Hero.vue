@@ -1,5 +1,5 @@
 <template>
-  <div class="max-md:px-5 relative w-full container px-20 pt-20 pb-10">
+  <div class="max-md:px-5 relative w-full container max-w-[1240px] pt-20 pb-10">
     <div class="flex flex-col h-full">
       <!-- title content -->
       <div>
@@ -9,8 +9,8 @@
             class="max-md:w-[50%] mb-4 block text-[2.5rem] font-[1000] leading-none md:mb-6 md:text-7xl"
             style="opacity: 1; transform: none"
             >I'm
-            <strong class="relative text-accent-600 dark:text-accent-500">dev</strong>
-            Huynam,
+            <strong class="relative text-accent-600 dark:text-accent-500">Huy</strong>
+            Namboz,
           </span>
           <h1
             class="block text-base text-slate-600 md:text-xl dark:text-slate-400"
@@ -73,7 +73,7 @@
     <img
       src="@Assets/images/hero.png"
       alt="hero"
-      class="absolute bottom-0 right-0 top-0 w-[50%] md:w-[43%] lg:w-[46%] md:top-10 xl:w-[47%]"
+      class="absolute bottom-0 right-0 top-0 w-[46%] md:w-[43%] lg:w-[46%] md:top-10 xl:w-[49%]"
     />
   </div>
 </template>

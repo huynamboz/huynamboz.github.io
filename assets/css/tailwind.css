@@ -10,6 +10,6 @@
   .background-grid::before {
       @apply  bg-hero-pattern w-full top-0 h-full absolute z-[-1];
       content: '';
-      mask-image: linear-gradient(transparent, black, transparent);
+      mask-image: linear-gradient(to top, transparent, black, black);
     }
 }
