@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer components {
+  .background-grid {
+    @apply bg-transparent bg-gradient-to-b from-slate-100 via-slate-100
+  }
+  .background-grid::before {
+      @apply  bg-hero-pattern w-full top-0 h-full absolute z-[-1];
+      content: '';
+      mask-image: linear-gradient(transparent, black, transparent);
+    }
+}

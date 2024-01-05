@@ -2,9 +2,7 @@
 definePageMeta({ layout: 'page' })
 </script>
 <template>
-  <div
-    class="pt-20 before:bg-hero-pattern before:w-full before:top-0 before:h-full before:absolute before:z-[-1] z-0 relative bg-transparent bg-gradient-to-b from-slate-100 via-slate-100"
-  >
+  <div class="background-grid flex flex-col w-full items-center pt-20 pb-20 z-0 relative">
     <LayoutsHomeHero />
     <NuxtLink to="/about">About</NuxtLink>
   </div>

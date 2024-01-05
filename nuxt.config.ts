@@ -6,5 +6,9 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon'],
-  css: ['~/assets/css/tailwind.css', '~/assets/css/global.css'],
+  css: ['~/assets/css/tailwind.css', '~/assets/css/global.css', '~/assets/css/component.css'],
+  alias: {
+    '@Components': './components',
+    '@Assets': './assets',
+  },
 })
