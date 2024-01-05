@@ -1,5 +1,11 @@
+<script setup>
+definePageMeta({ layout: 'page' })
+</script>
 <template>
-  <div></div>
+  <div class="">
+    <NuxtLink to="/">Home</NuxtLink>
+    <NuxtLink to="/about">About</NuxtLink>
+  </div>
 </template>
 
 <script setup></script>
