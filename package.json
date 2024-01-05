@@ -8,11 +8,13 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "tailwindcss-accent": "^2.1.2",
     "lint": "eslint . --ext .ts,.vue"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.3",
     "nuxt": "^3.9.0",
+    "tailwindcss-accent": "^2.1.2",
     "vue": "^3.4.5",
     "vue-router": "^4.2.5"
   },

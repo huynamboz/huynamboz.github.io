@@ -34,6 +34,9 @@ devDependencies:
   nuxt:
     specifier: ^3.9.0
     version: 3.9.0(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.10)
+  tailwindcss-accent:
+    specifier: ^2.1.2
+    version: 2.1.2(tailwindcss@3.4.0)
   vue:
     specifier: ^3.4.5
     version: 3.4.5(typescript@5.3.3)
@@ -7123,6 +7126,15 @@ packages:
       tailwindcss: 3.4.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /tailwindcss-accent@2.1.2(tailwindcss@3.4.0):
+    resolution: {integrity: sha512-Yjxpf7ViuE8NKOxtQiFCI8ACZ/I6TpRGZNkaTmPHWkjBYcP0MOVNWVODkmvvbJD786npABB0xfmtqDUP7ouoAg==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0'
+    dependencies:
+      color-convert: 2.0.1
+      tailwindcss: 3.4.0
     dev: true
 
   /tailwindcss@3.4.0:
