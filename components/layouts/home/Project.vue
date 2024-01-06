@@ -20,7 +20,11 @@
       <div class="max-md:flex-col max-md:gap-10 content-wrapper mt-8 flex gap-20">
         <div class="flex flex-col gap-3">
           <div
-            class="border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
+            v-motion
+            :initial="{ opacity: 0, x: -100 }"
+            :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+            :delay="100"
+            class="opacity-0 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
           >
             <p class="text-sm font-bold text-accent-600">Ecommerce build with Vite + vue3</p>
             <p class="text-sm mt-2 text-slate-700">
@@ -28,7 +32,11 @@
             </p>
           </div>
           <div
-            class="border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
+            v-motion
+            :initial="{ opacity: 0, x: -100 }"
+            :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+            :delay="200"
+            class="opacity-0 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
           >
             <p class="text-sm font-bold text-accent-600">Ecommerce build with Vite + vue3</p>
             <p class="text-sm mt-2 text-slate-700">
