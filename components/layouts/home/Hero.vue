@@ -1,5 +1,5 @@
 <template>
-  <div class="max-md:px-5 relative w-full container max-w-[1240px] pt-20 pb-10">
+  <div class="content-wrapper container relative pt-20 pb-10">
     <div class="flex flex-col h-full">
       <!-- title content -->
       <div>
@@ -73,7 +73,7 @@
     <img
       src="@Assets/images/hero.png"
       alt="hero"
-      class="absolute bottom-0 right-0 top-0 w-[46%] md:w-[43%] lg:w-[46%] md:top-10 xl:w-[49%]"
+      class="absolute top-0 right-0 w-[46%] md:w-[43%] lg:w-[46%] md:top-0 xl:w-[49%]"
     />
   </div>
 </template>
