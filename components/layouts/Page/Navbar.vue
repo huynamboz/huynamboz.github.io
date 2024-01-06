@@ -28,10 +28,10 @@
         <Icon name="pajamas:linkedin" size="22" color="black" />
       </NuxtLink>
       <div
-        class="ml-3 cursor-pointer hover:bg-slate-300/70 bg-slate-300/50 max-md:w-9 h-9 px-4 rounded-xl flex gap-2 text-sm font-bold text-slate-700 justify-center items-center"
+        class="ml-3 cursor-pointer hover:bg-slate-300/70 bg-slate-300/50 max-md:p-0 max-md:w-9 h-9 px-4 rounded-xl flex gap-2 text-sm font-bold text-slate-700 justify-center items-center"
       >
         <Icon name="gridicons:layout" size="19" color="black" />
-        Quick access
+        <span class="max-md:hidden">Quick access</span>
       </div>
     </div>
   </div>

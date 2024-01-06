@@ -26,7 +26,7 @@
           <NuxtLink to="https://github.com/huynamboz" target="blank">huynamboz</NuxtLink>
         </span>
         /
-        <span class="hover:underline cursor-pointer text-sm text-blue-600 font-bold">
+        <span class="hover:underline cursor-pointer text-sm text-blue-600 font-bold truncate">
           <NuxtLink to="/projects">vietQr-generator</NuxtLink>
         </span>
         <span class="text-xs text-slate-600 border-[1px] px-3 leading-6 rounded-2xl">public</span>
