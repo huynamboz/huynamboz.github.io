@@ -32,7 +32,13 @@
             <span class="block">clean and modern UI design.</span>
           </h1></span
         >
-        <div class="flex items-center mt-8 gap-5">
+        <div
+          v-motion
+          :initial="{ opacity: 0, x: -100 }"
+          :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+          :delay="200"
+          class="opacity-0 flex items-center mt-8 gap-5"
+        >
           <NuxtLink to="/about">
             <button
               class="px-8 py-3 text-base font-semibold text-white transition duration-200 ease-in-out transform bg-accent-600 rounded-xl hover:bg-accent-500 hover:scale-105"
@@ -50,7 +56,13 @@
       </div>
       <!-- end title content -->
       <!-- list icon tech -->
-      <div class="mt-32 flex flex-col text-sm gap-2 font-medium text-slate-500">
+      <div
+        v-motion
+        :initial="{ opacity: 0, x: -100 }"
+        :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+        :delay="300"
+        class="mt-32 flex flex-col text-sm gap-2 font-medium text-slate-500"
+      >
         <p>My favorite tech stack & tools:</p>
         <div class="flex gap-4">
           <div title="VueJS">
