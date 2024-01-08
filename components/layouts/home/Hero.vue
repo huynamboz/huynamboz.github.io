@@ -24,7 +24,7 @@
               :initial="{ opacity: 0, x: -100 }"
               :enter="{ opacity: 1, x: 0, scale: 1 }"
               :delay="100"
-              class="block text-base text-slate-600 md:text-xl dark:text-slate-400"
+              class="opacity-0 block text-base text-slate-600 md:text-xl dark:text-slate-400"
               style="opacity: 1; transform: none"
             >
               <span class="lowercase">A </span>
@@ -39,7 +39,7 @@
         <div
           v-motion
           :initial="{ opacity: 0, x: -100 }"
-          :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+          :enter="{ opacity: 1, x: 0, scale: 1 }"
           :delay="200"
           class="opacity-0 flex items-center mt-8 gap-5"
         >
@@ -63,9 +63,9 @@
       <div
         v-motion
         :initial="{ opacity: 0, x: -100 }"
-        :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
+        :enter="{ opacity: 1, x: 0, scale: 1 }"
         :delay="300"
-        class="mt-32 flex flex-col text-sm gap-2 font-medium text-slate-500"
+        class="opacity-0 mt-32 flex flex-col text-sm gap-2 font-medium text-slate-500"
       >
         <p>My favorite tech stack & tools:</p>
         <div class="flex gap-4">
