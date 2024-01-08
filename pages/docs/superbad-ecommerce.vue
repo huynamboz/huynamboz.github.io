@@ -5,8 +5,8 @@ definePageMeta({ layout: 'page' })
   <div class="w-full flex flex-col items-center">
     <div class="flex justify-center w-full background-grid background-grid--fade-in pt-20 pb-20">
       <div class="content-wrapper mt-20">
-        <div class="flex flex-col sm:gap-5 lg:gap-10">
-          <p class="text-accent-700 font-bold">Side project</p>
+        <div class="flex flex-col gap-5 lg:gap-10">
+          <p class="text-2xl text-accent-700 font-bold">Side project</p>
           <h1
             v-motion
             :initial="{ opacity: 0, x: -100 }"
@@ -72,7 +72,7 @@ definePageMeta({ layout: 'page' })
       <!-- end content -->
       <!-- section -->
       <div
-        class="max-md:relative max-md:w-full sticky rounded-2xl md:top-32 lg:min-w-[330px] w-[300px] h-fit border"
+        class="max-md:relative max-md:w-full sticky rounded-2xl md:top-32 lg:min-w-[330px] w-[300px] h-fit border md:-mt-44"
       >
         <div class="flex justify-between w-full border-b py-4 px-6">
           <div class="font-bold">Table of contents</div>
