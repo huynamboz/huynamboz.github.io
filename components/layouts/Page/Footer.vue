@@ -1,6 +1,6 @@
 <template>
   <div class="w-full background-grid--fade-top background-grid pb-12 mt-20 pt-20">
-    <div class="flex w-full px-14 justify-between">
+    <div class="flex w-full px-14 justify-between flex-wrap">
       <!-- left -->
       <div class="text-sm max-w-[300px]">
         <p class="font-bold text-slate-600">About me</p>

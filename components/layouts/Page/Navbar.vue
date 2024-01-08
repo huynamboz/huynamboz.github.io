@@ -1,5 +1,34 @@
+<script setup>
+const navbar = ref(null)
+onMounted(() => {
+  const navbarOffsetBottomWithPadding = navbar.value.offsetHeight + 20
+  const handleScroll = () => {
+    const scrollY = window.scrollY
+    if (scrollY > navbarOffsetBottomWithPadding) {
+      navbar.value.classList.add(
+        'bg-white/70',
+        'border-b-[1px]',
+        'dark:bg-slate-900/80',
+        'backdrop-blur',
+      )
+    } else {
+      navbar.value.classList.remove(
+        'bg-white/70',
+        'border-b-[1px]',
+        'dark:bg-slate-900/80',
+        'backdrop-blur',
+      )
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll)
+})
+</script>
 <template>
-  <div class="fixed top-0 z-[90] flex justify-between items-center w-full p-5">
+  <div
+    ref="navbar"
+    class="fixed transition-all duration-300 top-0 z-[90] flex justify-between items-center w-full p-5 py-4"
+  >
     <div class="flex items-center">
       <!-- logo -->
       <NuxtLink to="/" class="flex gap-2 items-center">
