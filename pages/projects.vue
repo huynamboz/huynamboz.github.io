@@ -3,9 +3,9 @@ definePageMeta({ layout: 'page' })
 </script>
 <template>
   <div>
-    <div>this page pj</div>
+    <div>this page <strong>project</strong></div>
     <div class="">
-      <NuxtLink to="/">Home</NuxtLink>
+      <NuxtLink to="/">project|</NuxtLink>
       <NuxtLink to="/about">About</NuxtLink>
     </div>
   </div>
