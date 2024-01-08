@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bottom-20 z-[99] border left-[50%] -translate-x-[50%] h-[100px] w-[360px] rounded-xl bg-white/70 backdrop-blur dark:bg-slate-900/80"
+    class="max-md:w-full bottom-20 z-[99] border left-[50%] h-[100px] w-[360px] rounded-xl bg-white/70 backdrop-blur dark:bg-slate-900/80"
   >
     <div class="flex w-full h-full justify-between items-center">
       <div class="flex p-2 pl-4 gap-4">

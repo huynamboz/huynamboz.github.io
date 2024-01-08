@@ -43,6 +43,7 @@
               Available on orem ipsum dolor sitisicing elit. Quisquam, voluptatum.
             </p>
           </div>
+          <LayoutsPageReactBox />
         </div>
         <div class="flex-auto max-w-[800px] lg:-mt-20">
           <AtomVCodeMockup />
