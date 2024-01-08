@@ -1,3 +1,6 @@
+<script setup>
+definePageMeta({ layout: 'page' })
+</script>
 <template>
   <div>
     <div>this page <strong>project</strong></div>

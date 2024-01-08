@@ -1,28 +1,32 @@
 <script setup>
 const navbar = ref(null)
 onMounted(() => {
-  const navbarOffsetBottomWithPadding = navbar.value.offsetHeight + 20
-  const handleScroll = () => {
-    const scrollY = window.scrollY
-    if (scrollY > navbarOffsetBottomWithPadding) {
-      navbar.value.classList.add(
-        'bg-white/70',
-        'border-b-[1px]',
-        'dark:bg-slate-900/80',
-        'backdrop-blur',
-      )
-    } else {
-      navbar.value.classList.remove(
-        'bg-white/70',
-        'border-b-[1px]',
-        'dark:bg-slate-900/80',
-        'backdrop-blur',
-      )
-    }
-  }
-
   window.addEventListener('scroll', handleScroll)
 })
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const handleScroll = () => {
+  const navbarOffsetBottomWithPadding = navbar.value.offsetHeight + 20
+  if (!navbar.value) return
+  const scrollY = window.scrollY
+  if (scrollY > navbarOffsetBottomWithPadding) {
+    navbar.value.classList.add(
+      'bg-white/70',
+      'border-b-[1px]',
+      'dark:bg-slate-900/80',
+      'backdrop-blur',
+    )
+  } else {
+    navbar.value.classList.remove(
+      'bg-white/70',
+      'border-b-[1px]',
+      'dark:bg-slate-900/80',
+      'backdrop-blur',
+    )
+  }
+}
 </script>
 <template>
   <div
