@@ -26,7 +26,11 @@
             :delay="100"
             class="opacity-0 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
           >
-            <p class="text-sm font-bold text-accent-600">Ecommerce build with Vite + vue3</p>
+            <NuxtLink
+              to="/docs/superbad-ecommerce"
+              class="hover:underline text-sm font-bold text-accent-600"
+              >Ecommerce build with Vite + vue3</NuxtLink
+            >
             <p class="text-sm mt-2 text-slate-700">
               Available on orem ipsum dolor sitisicing elit. Quisquam, voluptatum.
             </p>
@@ -38,7 +42,11 @@
             :delay="200"
             class="opacity-0 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px]"
           >
-            <p class="text-sm font-bold text-accent-600">Ecommerce build with Vite + vue3</p>
+            <NuxtLink
+              to="/docs/superbad-ecommerce"
+              class="hover:underline text-sm font-bold text-accent-600"
+              >Ecommerce build with Vite + vue3</NuxtLink
+            >
             <p class="text-sm mt-2 text-slate-700">
               Available on orem ipsum dolor sitisicing elit. Quisquam, voluptatum.
             </p>
