@@ -6,6 +6,6 @@
       <br />
       Quisquam, voluptatum.
     </p>
-    <img class="w-full rounded-md" src="@Assets/images/docs/ecommerce-v2/thumb.png" alt="Preview" />
+    <img class="w-full rounded-md" src="/images/docs/ecommerce-v2/thumb.png" alt="Preview" />
   </div>
 </template>
