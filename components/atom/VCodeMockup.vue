@@ -1,3 +1,7 @@
+<script setup>
+const props = defineProps(['project'])
+
+</script>
 <template>
   <div class="w-full h-full border-[1px] bg-white rounded-xl">
     <!-- header -->
@@ -11,7 +15,7 @@
         <div class="w-fit px-2 pr-4 text-xs flex items-center bg-slate-200/80 h-6 rounded-lg">
           <p class="truncate">
             <Icon name="ri:github-fill" size="18" class="text-slate-700" />
-            <span class="ml-1">huynamboz/vietQr-generator</span>
+            <span class="ml-1">{{ project.owner }}/{{ project.repo }}</span>
           </p>
         </div>
       </div>
@@ -23,16 +27,16 @@
       <div class="flex gap-2 items-center">
         <div class="w-5 h-5 rounded-md bg-slate-200"></div>
         <span class="hover:underline cursor-pointer text-sm text-blue-600">
-          <NuxtLink to="https://github.com/huynamboz" target="blank">huynamboz</NuxtLink>
+          <NuxtLink :to="project.ownerLink" target="blank">{{ project.owner }}</NuxtLink>
         </span>
         /
         <span class="hover:underline cursor-pointer text-sm text-blue-600 font-bold truncate">
-          <NuxtLink to="/projects">vietQr-generator</NuxtLink>
+          <NuxtLink :to="project.github">{{ project.repo }}</NuxtLink>
         </span>
         <span class="text-xs text-slate-600 border-[1px] px-3 leading-6 rounded-2xl">public</span>
       </div>
       <p class="text-sm font-light mt-3">
-        A open source project to generate QR code for Vietnamese. This project is built with NuxtJs
+        {{ project.description }}
       </p>
       <div class="flex mt-4 gap-2">
         <div class="w-5 h-5 rounded-md bg-slate-200"></div>
@@ -55,7 +59,7 @@
           </p>
         </div>
         <div class="mt-5 p-2">
-          <img src="@Assets/images/repo-1.png" alt="" />
+          <img :src="`/images/docs/${project.img}`" alt="" />
         </div>
       </div>
     </div>
