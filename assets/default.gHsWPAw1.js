@@ -1,1 +1,0 @@
-import{_ as t,c as s,J as o,a,o as c}from"./entry.pl19-ve-.js";const r={},l=a("div",{class:"w-[500px] h-[50px] bg-slate-600 text-white"},"đây là footer",-1);function n(e,_){return c(),s("div",null,[o(e.$slots,"default"),l])}const f=t(r,[["render",n]]);export{f as default};
