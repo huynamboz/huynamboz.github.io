@@ -50,10 +50,11 @@
               About me
             </button>
           </NuxtLink>
-          <NuxtLink to="/contact">
-            <button class="font-bold text-sm text-slate-700">
+          <NuxtLink to="https://www.linkedin.com/in/huynamvn/">
+            <button class="font-bold text-sm text-slate-700 flex items-center">
               <span class="mr-1 text-xl">👋</span>
               CONTACT
+              <Icon name="pajamas:linkedin" size="20" class="ml-1" />
             </button>
           </NuxtLink>
         </div>

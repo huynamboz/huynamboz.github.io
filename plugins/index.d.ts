@@ -1,0 +1,1 @@
+declare modules "@highlightjs/vue-plugin"

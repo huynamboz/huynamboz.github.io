@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: '_assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
   },
+  plugins: ['~/plugins/vue-drag-scroller.ts', '~/plugins/vue-highlight-code'],
   devtools: { enabled: true },
   modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon'],
   css: ['~/assets/css/tailwind.css', '~/assets/css/global.css', '~/assets/css/component.css'],
