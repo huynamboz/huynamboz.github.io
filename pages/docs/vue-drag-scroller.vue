@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// import 'highlight.js/styles/stackoverflow-light.css'
 useHead({
   title: 'Vue-drag-scroller document',
   meta: [{ name: 'description', content: 'A document website for package npm vue-drag-scroller' }],
