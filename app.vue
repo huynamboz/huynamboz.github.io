@@ -1,6 +1,6 @@
 <template>
   <NuxtPage />
-  <NuxtLayout/>
+  <NuxtLayout />
 </template>
 <style>
 .page-enter-active,
