@@ -1,6 +1,18 @@
 <script lang="ts" setup>
 const projects = ref([
   {
+    title: 'Vue drag scroller (npm package)',
+    description: 'A Vue directive that can make any element draggable and scrollable by mouse.',
+    link: 'docs/vue-drag-scroller',
+    github: 'https://github.com/huynamboz/vue-drag-scroller',
+    ownerLink: 'https://github.com/huynamboz',
+    owner: 'huynamboz',
+    repo: 'vue-drag-scroller',
+    img: 'vue-drag-scroller/bg.png',
+    tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
+    type: 'npm',
+  },
+  {
     title: 'Ecommerce v2',
     description:
       'A website help connect people with the best local experts. This is a side project that I built to practice my skills.',
@@ -25,18 +37,6 @@ const projects = ref([
     img: 'portfolio/preview.png',
     tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
     type: 'github',
-  },
-  {
-    title: 'Vue drag scroller (npm package)',
-    description: 'A Vue directive that can make any element draggable and scrollable by mouse.',
-    link: 'docs/vue-drag-scroller',
-    github: 'https://github.com/huynamboz/vue-drag-scroller',
-    ownerLink: 'https://github.com/huynamboz',
-    owner: 'huynamboz',
-    repo: 'vue-drag-scroller',
-    img: 'portfolio/preview.png',
-    tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
-    type: 'npm',
   },
 ])
 
