@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare",
     "tailwindcss-accent": "^2.1.2",
     "lint": "eslint . --ext .ts,.vue",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d .output/public"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.3",
