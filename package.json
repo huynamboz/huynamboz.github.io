@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.2",
+    "@nuxt/content": "^2.12.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@vueuse/motion": "^2.0.0",
     "autoprefixer": "^10.4.16",
@@ -30,6 +31,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^5.1.2",
     "gh-pages": "^6.1.1",
+    "github-markdown-css": "^5.5.1",
     "highlight.js": "^11.9.0",
     "postcss": "^8.4.33",
     "postcss-import": "^16.0.0",
