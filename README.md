@@ -1,5 +1,8 @@
-# Nuxt 3 Minimal Starter
-
+# Nuxt 3 Portfolio
+<!-- preview -->
+A portfolio website built with Nuxt 3.
+<!-- img -->
+![Nuxt 3 Portfolio](https://raw.githubusercontent.com/huynamboz/huynamboz.github.io/develop/public/images/docs/portfolio/preview.png)
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
