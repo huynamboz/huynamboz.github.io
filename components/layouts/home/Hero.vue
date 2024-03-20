@@ -43,17 +43,18 @@
           :delay="200"
           class="opacity-0 flex items-center mt-8 gap-5"
         >
-          <NuxtLink to="/about">
+          <a href="https://www.linkedin.com/in/huynamvn" target="_blank">
             <button
               class="px-8 py-3 text-base font-semibold text-white transition duration-200 ease-in-out transform bg-accent-600 rounded-xl hover:bg-accent-500 hover:scale-105"
             >
               About me
             </button>
-          </NuxtLink>
-          <NuxtLink to="/contact">
-            <button class="font-bold text-sm text-slate-700">
+          </a>
+          <NuxtLink to="https://www.linkedin.com/in/huynamvn/">
+            <button class="font-bold text-sm text-slate-700 flex items-center">
               <span class="mr-1 text-xl">👋</span>
               CONTACT
+              <Icon name="pajamas:linkedin" size="20" class="ml-1" />
             </button>
           </NuxtLink>
         </div>

@@ -1,0 +1,37 @@
+---
+title: Introduction
+description: Welcome to Nuxt UI Pro documentation template.
+---
+
+This template is a ready-to-use documentation template made with [Nuxt UI Pro](https://ui.nuxt.com/pro), a collection of premium components built on top of [Nuxt UI](https://ui.nuxt.com) to create beautiful & responsive Nuxt applications in minutes.
+
+There are already many websites based on this template:
+
+- [Nuxt](https://nuxt.com) - The Nuxt website
+- [Nuxt UI](https://ui.nuxt.com) - The documentation of `@nuxt/ui` and `@nuxt/ui-pro`
+- [Nuxt Image](https://image.nuxt.com) - The documentation of `@nuxt/image`
+- [Nuxt Content](https://content.nuxt.com) - The documentation of `@nuxt/content`
+- [Nuxt Devtools](https://devtools.nuxt.com) - The documentation of `@nuxt/devtools`
+- [Nuxt Studio](https://nuxt.studio) - The pro version of Nuxt Content
+
+## Features
+
+- Powered by [Nuxt 3](https://nuxt.com)
+- Built with [Nuxt UI](https://ui.nuxt.com) and [Nuxt UI Pro](https://ui.nuxt.com/pro)
+- Write content with [MDC syntax](https://content.nuxt.com/usage/markdown) thanks to [Nuxt Content](https://content.nuxt.com)
+- Compatible with [Nuxt Studio](https://nuxt.studio)
+- Auto-generated sidebar navigation
+- Full-Text Search out of the box
+- Beautiful Typography styles
+- Dark mode support
+- And more...
+
+## Play online
+
+You can start playing with this template in your browser using our online sandboxes:
+
+::fancy-header
+That text paragraph will be unwrapped.
+::
+
+Or open [Nuxt UI playground](https://ui.nuxt.com/playground).

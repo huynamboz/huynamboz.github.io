@@ -3,9 +3,21 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: '_assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
   },
+  plugins: [
+    '~/plugins/vue-drag-scroller.ts',
+    {
+      src: '~/plugins/vue-highlight-code',
+      mode: 'client',
+    },
+  ],
   devtools: { enabled: true },
-  modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon'],
-  css: ['~/assets/css/tailwind.css', '~/assets/css/global.css', '~/assets/css/component.css'],
+  modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content'],
+  css: [
+    '~/assets/css/tailwind.css',
+    '~/assets/css/global.css',
+    '~/assets/css/component.css',
+    'highlight.js/styles/stackoverflow-light.css',
+  ],
   alias: {
     '@Components': './components',
     '@Assets': './assets',
