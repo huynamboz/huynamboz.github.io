@@ -42,6 +42,14 @@ const toTop = (): void => {
             <br />
             by drag and move mouse created by
             <a href="https://github.com/huynamboz" class="text-blue-500">@huynamboz</a>.
+            <br />
+            <br />
+            <span>
+              See it on
+              <a class="text-blue-500" href="https://www.npmjs.com/package/vue-drag-scroller"
+                >npmjs.com - vue-drag-scroller</a
+              >
+            </span>
           </p>
         </div>
         <div class="mt-14 flex flex-wrap gap-2 lg:gap-5">
