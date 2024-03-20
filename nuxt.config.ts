@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     },
   ],
   devtools: { enabled: true },
-  modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon'],
+  modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content'],
   css: [
     '~/assets/css/tailwind.css',
     '~/assets/css/global.css',
