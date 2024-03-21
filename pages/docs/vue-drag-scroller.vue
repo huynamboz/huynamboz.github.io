@@ -9,7 +9,7 @@ useSeoMeta({
   ogTitle: 'Vue-drag-scroller document',
   description: 'A document website for package npm vue-drag-scroller',
   ogDescription: 'A document website for package npm vue-drag-scroller',
-  ogImage: '/public/thumbnail.png',
+  ogImage: '/public/images/docs/thumbnail.png',
 })
 definePageMeta({ layout: 'page' })
 const toTop = (): void => {
