@@ -1,4 +1,15 @@
 <script setup>
+useHead({
+  title: 'Huynamboz - impressive personal website',
+  meta: [{ name: 'description', content: 'An impressive personal website about huynamboz' }],
+})
+useSeoMeta({
+  title: 'Huynamboz - impressive personal website',
+  ogTitle: 'Huynamboz - impressive personal website',
+  description: 'An impressive personal website about huynamboz',
+  ogDescription: 'An impressive personal website about huynamboz',
+  ogImage: '/public/images/thumbnail.png',
+})
 definePageMeta({ layout: 'page' })
 </script>
 <template>
