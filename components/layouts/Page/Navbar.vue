@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const navbar = ref(null)
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
@@ -7,7 +7,7 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-const handleScroll = () => {
+const handleScroll = (): void => {
   const navbarOffsetBottomWithPadding = navbar.value.offsetHeight + 20
   if (!navbar.value) return
   const scrollY = window.scrollY
@@ -27,12 +27,15 @@ const handleScroll = () => {
     )
   }
 }
+
+const showSettings = ref<boolean>(false)
 </script>
 <template>
   <div
     ref="navbar"
     class="fixed transition-all duration-300 top-0 z-[90] flex justify-between items-center w-full p-5 py-4"
   >
+    <LayoutsNavigationSettings v-if="showSettings" @close="showSettings = false" />
     <div class="flex items-center">
       <!-- logo -->
       <NuxtLink to="/" class="flex gap-2 items-center">
@@ -62,6 +65,7 @@ const handleScroll = () => {
       </NuxtLink>
       <div
         class="ml-3 cursor-pointer hover:bg-slate-300/70 bg-slate-300/50 max-md:p-0 max-md:w-9 h-9 px-4 rounded-xl flex gap-2 text-sm font-bold text-slate-700 justify-center items-center"
+        @click="showSettings = !showSettings"
       >
         <Icon name="gridicons:layout" size="19" color="black" />
         <span class="max-md:hidden">Quick access</span>
