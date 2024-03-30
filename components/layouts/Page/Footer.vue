@@ -28,7 +28,7 @@
             >
               <span>Projects</span>
             </NuxtLink>
-            <NuxtLink to="/blog" class="flex items-center gap-2 text-sm font-bold text-slate-600">
+            <NuxtLink to="/blog/test" class="flex items-center gap-2 text-sm font-bold text-slate-600">
               <span>Blog</span>
             </NuxtLink>
             <NuxtLink
@@ -48,7 +48,7 @@
             >
               <span>Source code</span>
             </NuxtLink>
-            <NuxtLink to="/blog" class="flex items-center gap-2 text-sm font-bold text-slate-600">
+            <NuxtLink to="/blog/test" class="flex items-center gap-2 text-sm font-bold text-slate-600">
               <span>My github</span>
             </NuxtLink>
             <NuxtLink

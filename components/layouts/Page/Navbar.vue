@@ -48,7 +48,7 @@ const showSettings = ref<boolean>(false)
         <!-- <NuxtLink to="/projects" class="flex items-center gap-2 text-sm font-bold text-accent-600">
           <span>Projects</span>
         </NuxtLink>
-        <NuxtLink to="/blog" class="flex items-center gap-2 text-sm font-bold text-accent-600">
+        <NuxtLink to="/blog/test" class="flex items-center gap-2 text-sm font-bold text-accent-600">
           <span>Blog</span>
         </NuxtLink>
         <NuxtLink to="/contact" class="flex items-center gap-2 text-sm font-bold text-accent-600">
