@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const navbar = ref(null)
+const navbar = ref<HTMLElement | null>(null)
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 })
@@ -8,6 +8,7 @@ onUnmounted(() => {
 })
 
 const handleScroll = (): void => {
+  if (!navbar.value) return
   const navbarOffsetBottomWithPadding = navbar.value.offsetHeight + 20
   if (!navbar.value) return
   const scrollY = window.scrollY
