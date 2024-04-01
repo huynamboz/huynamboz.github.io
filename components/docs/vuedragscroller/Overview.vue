@@ -14,10 +14,12 @@
         <Icon name="logos:github-icon" size="20" />
       </a>
     </p>
-    <img
-      class="w-full rounded-md"
-      src="https://github.com/huynamboz/vue-drag-scroller/assets/38585889/d4143c76-9240-4163-a444-00bae811a138"
-      alt="Preview"
-    />
+    <video class="w-full" controls>
+      <source
+        src="https://github.com/huynamboz/vue-drag-scroller/assets/38585889/20139bab-0004-4249-8826-70959f6dbc77"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
   </div>
 </template>
