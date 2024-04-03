@@ -1,0 +1,1 @@
+import{f as a}from"./Dnd51l0P.js";import{y as t,_ as f,o,c as _}from"./B9HiK9bq.js";const d=(e,r,c,...n)=>e[r]?t({...e,[r]:()=>a(e[r](),c==null?void 0:c.unwrap)},r,c,...n):t(e,r,c,...n),u={},l={class:"fancy-header"};function i(e,r){return o(),_("h2",l,[d(e.$slots,"default",{unwrap:"p"})])}const w=f(u,[["render",i]]);export{w as default};
