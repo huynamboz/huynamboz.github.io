@@ -75,9 +75,10 @@
       </div>
       <!-- theme -->
       <NuxtLink
-        to="/contact"
+        to="https://github.com/huynamboz/huynamboz.github.io"
         class="flex items-center gap-2 text-xs font-light text-slate-600 mt-10"
         >See recent update on github
+        <img src="https://komarev.com/ghpvc/?username=huynamboz" alt="" />
       </NuxtLink>
     </div>
   </div>
