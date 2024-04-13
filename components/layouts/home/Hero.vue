@@ -96,6 +96,7 @@
       <!-- end list icon tech -->
     </div>
     <NuxtImg
+      format="webp"
       src="/images/hero.png"
       alt="hero"
       class="absolute top-0 right-0 w-[46%] md:w-[43%] lg:w-[46%] md:top-0 xl:w-[49%]"

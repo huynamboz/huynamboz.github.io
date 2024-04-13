@@ -59,7 +59,7 @@ const props = defineProps(['project'])
           </p>
         </div>
         <div class="mt-5 p-2">
-          <NuxtImg :src="`/images/docs/${project.img}`" alt="" />
+          <NuxtImg format="webp" :src="`/images/docs/${project.img}`" alt="" />
         </div>
       </div>
     </div>
