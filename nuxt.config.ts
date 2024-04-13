@@ -22,7 +22,11 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxt/content',
     '@nuxtjs/sitemap',
+    '@nuxt/image',
   ],
+  image: {
+    format: ['webp']
+  },
   css: [
     '~/assets/css/tailwind.css',
     '~/assets/css/global.css',
