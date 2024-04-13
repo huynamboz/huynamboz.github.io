@@ -12,8 +12,17 @@ export default defineNuxtConfig({
       mode: 'client',
     },
   ],
+  site: {
+    url: 'https://hinam.site',
+  },
   devtools: { enabled: true },
-  modules: ['@vueuse/motion/nuxt', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content'],
+  modules: [
+    '@vueuse/motion/nuxt',
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@nuxt/content',
+    '@nuxtjs/sitemap',
+  ],
   css: [
     '~/assets/css/tailwind.css',
     '~/assets/css/global.css',

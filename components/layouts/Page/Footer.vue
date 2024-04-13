@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full background-grid--fade-top background-grid pb-12 mt-20 pt-20">
+  <footer class="w-full background-grid--fade-top background-grid pb-12 mt-20 pt-20">
     <div class="flex w-full px-14 justify-between flex-wrap">
       <!-- left -->
       <div class="text-sm max-w-[300px]">
@@ -75,12 +75,13 @@
       </div>
       <!-- theme -->
       <NuxtLink
-        to="/contact"
+        to="https://github.com/huynamboz/huynamboz.github.io"
         class="flex items-center gap-2 text-xs font-light text-slate-600 mt-10"
         >See recent update on github
+        <img src="https://komarev.com/ghpvc/?username=huynamboz" alt="" />
       </NuxtLink>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script setup></script>

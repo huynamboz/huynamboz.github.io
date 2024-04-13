@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5">
+  <section id="installation" class="flex flex-col gap-5">
     <h2 id="install" class="max-md:text-2xl text-4xl font-bold text-slate-700">Installation</h2>
     <p class="text-base text-slate-600">Install package</p>
     <!-- code -->
@@ -23,5 +23,5 @@
         </span>
       </div>
     </div>
-  </div>
+  </section>
 </template>

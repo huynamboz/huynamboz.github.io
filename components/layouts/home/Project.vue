@@ -102,7 +102,6 @@ onMounted(() => {
               </p>
             </div>
           </div>
-          <LayoutsPageReactBox />
         </div>
         <div class="flex-auto max-w-[800px] lg:-mt-20">
           <AtomVCodeMockup :project="currentProject" />

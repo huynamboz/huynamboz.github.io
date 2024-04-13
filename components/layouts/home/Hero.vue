@@ -5,36 +5,36 @@
       <div>
         <p class="text-4xl text-slate-600">hi! ✌️</p>
         <span class="text-slate-700 dark:text-slate-300">
-          <ClientOnly>
-            <div
-              v-motion
-              :initial="{ opacity: 0, x: -100 }"
-              :enter="{ opacity: 1, x: 0, scale: 1 }"
-              class="opacity-0 max-md:w-[50%] mb-4 block text-[2.5rem] font-[1000] leading-none md:mb-6 md:text-7xl"
-              style="opacity: 1; transform: none"
+          <h1
+            v-motion="{
+              initial: { opacity: 0, x: -100 },
+              enter: { opacity: 1, x: 0, scale: 1 },
+            }"
+            class="opacity-0 max-md:w-[50%] mb-4 block text-[2.5rem] font-[1000] leading-none md:mb-6 md:text-7xl"
+          >
+            I'm
+            <strong class="relative text-accent-600 dark:text-accent-500">Huy</strong>
+            Namboz,
+          </h1>
+          <!-- <ClientOnly>
+          </ClientOnly> -->
+          <h2
+            v-motion="{
+              initial: { opacity: 0, x: -100 },
+              enter: { opacity: 1, x: 0, scale: 1 },
+              delay: 100,
+            }"
+            class="opacity-0 block text-base text-slate-600 md:text-xl dark:text-slate-400"
+          >
+            <span class="lowercase">A </span>
+            <strong class="font-bold lowercase text-slate-700 dark:text-slate-300"
+              >Front-End Developer</strong
             >
-              I'm
-              <strong class="relative text-accent-600 dark:text-accent-500">Huy</strong>
-              Namboz,
-            </div>
-          </ClientOnly>
-          <ClientOnly>
-            <div
-              v-motion
-              :initial="{ opacity: 0, x: -100 }"
-              :enter="{ opacity: 1, x: 0, scale: 1 }"
-              :delay="100"
-              class="opacity-0 block text-base text-slate-600 md:text-xl dark:text-slate-400"
-              style="opacity: 1; transform: none"
-            >
-              <span class="lowercase">A </span>
-              <strong class="font-bold lowercase text-slate-700 dark:text-slate-300"
-                >Front-End Developer</strong
-              >
-              who loves intuitive,
-              <span class="block">clean and modern UI design.</span>
-            </div>
-          </ClientOnly>
+            who loves intuitive,
+            <span class="block">clean and modern UI design.</span>
+          </h2>
+          <!-- <ClientOnly>
+          </ClientOnly> -->
         </span>
         <div
           v-motion
