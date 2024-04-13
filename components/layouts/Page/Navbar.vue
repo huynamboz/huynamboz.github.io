@@ -32,7 +32,7 @@ const handleScroll = (): void => {
 const showSettings = ref<boolean>(false)
 </script>
 <template>
-  <div
+  <header
     ref="navbar"
     class="fixed transition-all duration-300 top-0 z-[90] flex justify-between items-center w-full p-5 py-4"
   >
@@ -72,5 +72,5 @@ const showSettings = ref<boolean>(false)
         <span class="max-md:hidden">Quick access</span>
       </div>
     </div>
-  </div>
+  </header>
 </template>

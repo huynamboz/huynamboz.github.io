@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full background-grid--fade-top background-grid pb-12 mt-20 pt-20">
+  <footer class="w-full background-grid--fade-top background-grid pb-12 mt-20 pt-20">
     <div class="flex w-full px-14 justify-between flex-wrap">
       <!-- left -->
       <div class="text-sm max-w-[300px]">
@@ -81,7 +81,7 @@
         <img src="https://komarev.com/ghpvc/?username=huynamboz" alt="" />
       </NuxtLink>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script setup></script>

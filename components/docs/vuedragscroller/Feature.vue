@@ -81,7 +81,7 @@ const onlyY = `<template>
 </template>`
 </script>
 <template>
-  <div class="flex flex-col gap-5 w-full">
+  <section id="feature" class="flex flex-col gap-5 w-full">
     <h2 class="max-md:text-2xl text-4xl font-bold text-slate-700">Features</h2>
     <p class="text-base text-slate-600">
       You can easy custom your option, if you have idea for new feature, please
@@ -285,5 +285,5 @@ const onlyY = `<template>
         />
       </div>
     </div>
-  </div>
+  </section>
 </template>
