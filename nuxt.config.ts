@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
   plugins: [
-    '~/plugins/vue-drag-scroller.ts',
     {
       src: '~/plugins/vue-highlight-code',
       mode: 'client',
@@ -24,8 +23,16 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxt/image',
   ],
+  nitro: {
+    prerender: {
+      routes: [
+        '/_ipx/f_webp/images/docs/ecommerce-v2/thumb.png',
+        '/_ipx/f_webp/images/docs/portfolio/preview.png',
+      ],
+    },
+  },
   image: {
-    format: ['webp']
+    format: ['webp'],
   },
   css: [
     '~/assets/css/tailwind.css',
