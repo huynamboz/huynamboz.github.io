@@ -69,7 +69,7 @@ onMounted(() => {
     <!-- list project -->
     <div class="flex justify-center background-grid border-t-[1px] mt-20 w-full">
       <div class="max-md:flex-col max-md:gap-10 content-wrapper mt-8 flex gap-20">
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 flex-1">
           <div
             v-for="(project, index) in projects"
             :key="project.title"
@@ -103,7 +103,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="flex-auto max-w-[800px] lg:-mt-20">
+        <div class="flex-auto max-w-[800px] lg:-mt-20 flex-2">
           <AtomVCodeMockup :project="currentProject" />
         </div>
       </div>

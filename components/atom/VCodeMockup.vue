@@ -1,6 +1,5 @@
 <script setup>
-const props = defineProps(['project'])
-
+defineProps(['project'])
 </script>
 <template>
   <div class="w-full h-full border-[1px] bg-white rounded-xl">

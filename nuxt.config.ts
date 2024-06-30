@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
+  supabase: {
+    redirect: false,
+  },
   plugins: [
     {
       src: '~/plugins/vue-highlight-code',
@@ -22,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/sitemap',
     '@nuxt/image',
+    '@nuxtjs/supabase',
   ],
   nitro: {
     prerender: {
