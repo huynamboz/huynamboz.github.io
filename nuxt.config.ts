@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
+      crawlLinks: true,
       routes: [
         '/_ipx/f_webp/images/docs/ecommerce-v2/thumb.png',
         '/_ipx/f_webp/images/docs/portfolio/preview.png',
