@@ -17,6 +17,7 @@
     "@nuxtjs/tailwindcss": "^6.10.3",
     "nuxt": "^3.11.1",
     "nuxt-icon": "^0.6.8",
+    "sass": "^1.77.6",
     "tailwindcss-accent": "^2.1.2",
     "vue": "^3.4.5",
     "vue-router": "^4.2.5"
