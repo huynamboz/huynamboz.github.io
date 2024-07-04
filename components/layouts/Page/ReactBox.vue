@@ -39,20 +39,20 @@ const clapElm = ref<HTMLElement | null>(null)
 
 const onClap = async () => {
   animate(clapElm.value)
-  await $fetch('/api/reacts/clap', { method: 'PUT' })
   data.value.clap++
+  await $fetch('/api/reacts/clap', { method: 'PUT' })
 }
 
 const onWow = async () => {
   animate(clapElm.value)
-  await $fetch('/api/reacts/wow', { method: 'PUT' })
   data.value.wow++
+  await $fetch('/api/reacts/wow', { method: 'PUT' })
 }
 
 const onLook = async () => {
   animate(clapElm.value)
-  await $fetch('/api/reacts/look', { method: 'PUT' })
   data.value.look++
+  await $fetch('/api/reacts/look', { method: 'PUT' })
 }
 </script>
 <template>
