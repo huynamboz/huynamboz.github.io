@@ -6,6 +6,7 @@ export interface Option {
   quizTypes: Array<string>
 }
 const modelMap = new Map<number, string>([
+  [0, 'gemini-pro'],
   [1, 'gemini-1.5-flash'],
   [2, 'gemini-1.5-flash-latest'],
   [3, 'gemini-1.5-pro'],
@@ -87,7 +88,7 @@ async function retryWithBackoff(
   let response = null
 
   while (attempt < retries && !response) {
-    const modelName = modelMap.get(attempt + 1) || 'gemini-1.5-flash'
+    const modelName = modelMap.get(attempt) || 'gemini-1.5-flash'
     response = await modelFn(modelName)
     attempt += 1
   }
@@ -113,19 +114,20 @@ async function callGeminiSummarize({ modelName, prompt }: GeminiPayload): Promis
   try {
     const model = genAI.getGenerativeModel({
       model: modelName,
-      systemInstruction: 'You are a strict JSON quiz generator. Follow the instructions carefully:',
+      // systemInstruction: 'You are a strict JSON quiz generator. Follow the instructions carefully:',
     })
-    const chatSession = model.startChat({
-      generationConfig,
-      history: [
-        {
-          role: 'user',
-          parts: [{ text: prompt }],
-        },
-      ],
-    })
+    // const chatSession = model.startChat({
+    //   generationConfig,
+    //   history: [
+    //     {
+    //       role: 'user',
+    //       parts: [{ text: prompt }],
+    //     },
+    //   ],
+    // })
 
-    const result = await chatSession.sendMessage('')
+    // const result = await chatSession.sendMessage('')
+    const result = await model.generateContent(prompt)
     const response = await result.response
     return response.text()
   } catch (error: any) {
