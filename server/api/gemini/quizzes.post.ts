@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const res = JSON.parse(responseText)
-    sendTelegram(
+    await sendTelegram(
       `Generate quiz: ${res.length} questions`,
       res.map((q: any) => q.content),
     )
