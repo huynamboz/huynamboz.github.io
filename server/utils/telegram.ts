@@ -3,7 +3,7 @@ export async function sendTelegram(message: string, code?: object) {
     await $fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
       method: 'POST',
       body: {
-        chat_id: '5388377771',
+        chat_id: process.env.TELEGRAM_CHAT_ID,
         text: `
 <b> ${message}:</b>
 ${code ? `<code>${JSON.stringify(code, null, 2)}</code>` : ''}
