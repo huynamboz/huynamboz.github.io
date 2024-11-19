@@ -5,28 +5,33 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
+
   supabase: {
     redirect: false,
   },
+
   plugins: [
     {
       src: '~/plugins/vue-highlight-code',
       mode: 'client',
     },
   ],
+
   site: {
-    url: 'https://hinam.site',
+    url: 'https://hinam.nuxt.dev',
   },
+
   devtools: { enabled: true },
+
   modules: [
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
-    '@nuxt/content',
     '@nuxtjs/sitemap',
     '@nuxt/image',
     '@nuxtjs/supabase',
   ],
+
   nitro: {
     prerender: {
       failOnError: false,
@@ -37,19 +42,23 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   image: {
     format: ['webp'],
   },
+
   css: [
     '~/assets/css/tailwind.css',
     '~/assets/css/global.css',
     '~/assets/css/component.css',
     'highlight.js/styles/stackoverflow-light.css',
   ],
+
   alias: {
     '@Components': './components',
     '@Assets': './assets',
   },
+
   runtimeConfig: {
     public: {
       motion: {
@@ -70,4 +79,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-11-19',
 })
