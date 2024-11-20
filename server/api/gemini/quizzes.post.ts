@@ -14,6 +14,13 @@ const quizSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+  setResponseHeaders(event, {
+    'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Expose-Headers': '*',
+  })
   // const { history, language, option } = await readBody(event)
   try {
     const result = await readValidatedBody(event, (body) => quizSchema.safeParse(body)) // or `.parse` to directly throw an error
