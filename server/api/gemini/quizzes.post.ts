@@ -32,14 +32,14 @@ export default defineEventHandler(async (event) => {
       .replace(/```/g, '')
       .trim()
     if (!responseText) {
-      sendTelegram('Generate quiz: Unknown error' + responseText)
       throw errorHandler({ statusCode: 400, message: 'Generate quiz error' })
     }
 
     const res = JSON.parse(responseText)
     await sendTelegram(
-      `Generate quiz: ${res.length} questions`,
-      res.map((q: any) => q.content),
+      `Generate quiz: ${res.length} questions \n
+      ${res.map((q: any) => q.content).join('\n')}
+      `,
     )
     return res
   } catch (error: any) {

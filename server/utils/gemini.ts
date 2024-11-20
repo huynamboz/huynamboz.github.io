@@ -133,6 +133,7 @@ async function callGeminiSummarize({ modelName, prompt }: GeminiPayload): Promis
     return response.text()
   } catch (error: any) {
     console.error('Call gemini error:', error.message)
+    sendTelegram('❌Generate quiz: Gemini error', error.message)
     return null
   }
 }
