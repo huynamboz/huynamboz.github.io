@@ -5,7 +5,7 @@ export async function sendTelegram(message: string, code?: object) {
       body: {
         chat_id: process.env.TELEGRAM_CHAT_ID,
         text: `
-<b> ${message}:</b>
+<b> ${message}</b>
 ${code ? `<code>${JSON.stringify(code, null, 2)}</code>` : ''}
 `,
         parse_mode: 'HTML',
