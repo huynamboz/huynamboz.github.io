@@ -9,7 +9,8 @@ export default defineEventHandler((event) => {
 
   // Xử lý các yêu cầu OPTIONS
   if (event.method === 'OPTIONS') {
-    event.node.res.statusCode = 204 // No Content
-    event.node.res.end()
+    event.res.statusCode = 204
+    event.res.statusMessage = 'No Content.'
+    return 'OK'
   }
 })

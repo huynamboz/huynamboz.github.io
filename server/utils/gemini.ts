@@ -34,6 +34,7 @@ function generateSummaryPrompt(language: string, currentQuizzes: string, option:
 3. Quiz Generation Rules:
    - For "MULTIPLE_CHOICE" quiz_type, always generate **exactly 4 answers** and only **1 correct answer**.
    - For "TRUE_FALSE" quiz_type, always generate **exactly 2 answers**.
+   - Position the correct answer randomly among the answers.
    - All questions must be unique and not overlap with the following list of current quizzes: ${currentQuizzes || 'None provided'}.
 
 4. Language:

@@ -6,14 +6,6 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
-  // allow all cors
-  security: {
-    corsHandler: {
-      origin: '*',
-      allowHeaders: '*',
-    },
-  },
-
   supabase: {
     redirect: false,
   },
