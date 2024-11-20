@@ -16,8 +16,9 @@ export default defineNuxtConfig({
       cors: true, // if enabled, also needs cors-preflight-request.ts Nitro middleware to answer CORS preflight requests
       headers: {
         // CORS headers
-        'Access-Control-Allow-Origin': '*', // 'http://example:6006', has to be set to the requesting domain that you want to send the credentials back to
-        'Access-Control-Allow-Methods': '*', // 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+        'Access-Control-Allow-Origin':
+          'https://hinam.nuxt.dev, https://quizzfly.site, http://localhost:5173',
+        'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Headers': '*', // 'Origin, Content-Type, Accept, Authorization, X-Requested-With'
         'Access-Control-Expose-Headers': '*',
