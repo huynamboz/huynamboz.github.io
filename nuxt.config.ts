@@ -6,6 +6,13 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
+  // allow all cors
+  security: {
+    corsHandler: {
+      origin: '*',
+    },
+  },
+
   supabase: {
     redirect: false,
   },
@@ -30,6 +37,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxt/image',
     '@nuxtjs/supabase',
+    'nuxt-security',
   ],
 
   nitro: {
