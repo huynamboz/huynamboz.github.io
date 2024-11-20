@@ -6,11 +6,9 @@ export default defineEventHandler((event) => {
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Expose-Headers': '*',
   })
-
-  // Xử lý các yêu cầu OPTIONS
   if (event.method === 'OPTIONS') {
-    event.res.statusCode = 204
-    event.res.statusMessage = 'No Content.'
+    event.node.res.statusCode = 204
+    event.node.res.statusMessage = 'No Content.'
     return 'OK'
   }
 })
