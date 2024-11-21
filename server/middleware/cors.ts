@@ -1,12 +1,14 @@
-/**
- * Middleware to respond CORS preflight requests using OPTIONS method.
- */
 export default defineEventHandler((event) => {
-  // Answers HTTP 204 OK to CORS preflight requests using OPTIONS method :
-  // if (event.method === 'OPTIONS' && isPreflightRequest(event)) {
-  if (isPreflightRequest(event)) {
-    event.node.res.statusCode = 204
-    event.node.res.statusMessage = 'No Content'
+  setResponseHeaders(event, {
+    'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Expose-Headers': '*',
+  })
+  if (getMethod(event) === 'OPTIONS') {
+    event.res.statusCode = 204
+    event.res.statusMessage = 'No Content.'
     return 'OK'
   }
 })
