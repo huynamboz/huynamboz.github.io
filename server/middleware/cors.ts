@@ -6,6 +6,7 @@ export default defineEventHandler((event) => {
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Expose-Headers': '*',
   })
+  console.log('event.method', event.method)
   if (event.method === 'OPTIONS') {
     event.node.res.statusCode = 204
     event.node.res.statusMessage = 'No Content.'
