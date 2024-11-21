@@ -1,8 +1,8 @@
 export default defineEventHandler((event) => {
   // Answers HTTP 204 OK to CORS preflight requests using OPTIONS method :
-  if (event.method === 'OPTIONS' && isPreflightRequest(event)) {
-    event.node.res.statusCode = 204
-    event.node.res.statusMessage = 'No Content'
-    return 'OK'
-  }
+  // if (event.method === 'OPTIONS' && isPreflightRequest(event)) {
+  //   event.node.res.statusCode = 204
+  //   event.node.res.statusMessage = 'No Content'
+  //   return 'OK'
+  // }
 })
