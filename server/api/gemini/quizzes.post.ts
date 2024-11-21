@@ -15,11 +15,12 @@ const quizSchema = z.object({
 
 export default defineEventHandler(async (event) => {
   // const { history, language, option } = await readBody(event)
+  let responseTextTemp = ''
   try {
     const result = await readValidatedBody(event, (body) => quizSchema.safeParse(body)) // or `.parse` to directly throw an error
 
     if (!result.success) {
-      sendTelegram('Generate quiz: Validation failed', result.error)
+      sendTelegram('❌Generate quiz: Validation failed', result.error)
       throw errorHandler({ statusCode: 400, message: 'Validation failed' })
     }
 
@@ -31,6 +32,8 @@ export default defineEventHandler(async (event) => {
       ?.replace(/```json/g, '')
       .replace(/```/g, '')
       .trim()
+
+    responseTextTemp = responseText
     if (!responseText) {
       throw errorHandler({ statusCode: 400, message: 'Generate quiz error' })
     }
@@ -43,7 +46,7 @@ ${res.map((q: any) => q.content).join('\n')}
     )
     return res
   } catch (error: any) {
-    await sendTelegram(`Generate quiz: ${error?.message || 'Unknown error'}`)
+    await sendTelegram(`❌Generate quiz: ${responseTextTemp || error?.message || 'Unknown error'}`)
     throw errorHandler({ statusCode: 400, message: error?.message || 'Unknown error' })
   }
 })
