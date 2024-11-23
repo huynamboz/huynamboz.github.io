@@ -34,6 +34,11 @@ export default defineNuxtConfig({
   ],
 
   nitro: {
+    vercel: {
+      functions: {
+        maxDuration: 30,
+      },
+    },
     routeRules: {
       '/api/**': {
         proxy: 'https://quizzfly-ai.vercel.app/api/**',
