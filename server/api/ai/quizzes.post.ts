@@ -1,7 +1,15 @@
 import { z } from 'zod'
+import { genByHyperbolic } from '~/server/utils/hyperbolic'
 import { sendTelegram } from '~/server/utils/telegram'
 
 const quizTypesSchema = z.enum(['TRUE_FALSE', 'MULTIPLE_CHOICE'])
+const modelEnum = z.enum([
+  'gemini',
+  'meta-llama/Meta-Llama-3.1-8B-Instruct',
+  'meta-llama/Meta-Llama-3.1-70B-Instruct',
+  'meta-llama/Meta-Llama-3-70B-Instruct',
+  'Qwen/Qwen2.5-Coder-32B-Instruct', // coding knowledge
+])
 
 const quizSchema = z.object({
   language: z.string().default('en'),
@@ -11,6 +19,7 @@ const quizSchema = z.object({
     theme: z.string(),
     quizTypes: z.array(quizTypesSchema),
   }),
+  model: z.string().refine((value) => modelEnum.safeParse(value).success),
 })
 
 export default defineEventHandler(async (event) => {
@@ -24,9 +33,31 @@ export default defineEventHandler(async (event) => {
       throw errorHandler({ statusCode: 400, message: 'Validation failed' })
     }
 
-    const { language, quizzes, option } = result.data
+    const { language, quizzes, option, model } = result.data
 
-    let responseText = (await generateQuiz(language, quizzes.join(','), option)) || ''
+    //     if (model) {
+    //       const responseText = await genByHyperbolic(language, quizzes.join(','), option, model)
+    //       if (!responseText) {
+    //         throw errorHandler({ statusCode: 400, message: 'Generate quiz error' })
+    //       }
+
+    //       const res = JSON.parse(responseText)
+    //       await sendTelegram(
+    //         `Generate quiz: ${res.length} questions
+    // ${res.map((q: any) => q.content).join('\n')}
+    // `,
+    //       )
+    //       return res
+    //     }
+
+    let responseText = ''
+
+    if (model && model !== 'gemini') {
+      responseText = (await genByHyperbolic(language, quizzes.join(','), option, model)) || ''
+    } else {
+      responseText = (await generateQuiz(language, quizzes.join(','), option)) || ''
+    }
+
     // handle remove ```json and ``` from responseText
     responseText = responseText
       ?.replace(/```json/g, '')
@@ -40,7 +71,7 @@ export default defineEventHandler(async (event) => {
 
     const res = JSON.parse(responseText)
     await sendTelegram(
-      `Generate quiz: ${res.length} questions
+      `Generate quiz: ${res.length} questions, model: ${model}
 ${res.map((q: any) => q.content).join('\n')}
 `,
     )

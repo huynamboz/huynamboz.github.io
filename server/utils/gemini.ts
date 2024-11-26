@@ -13,7 +13,7 @@ const modelMap = new Map<number, string>([
   [4, 'gemini-1.5-pro-latest'],
 ])
 
-function generateSummaryPrompt(language: string, currentQuizzes: string, option: Option) {
+export function generateSummaryPrompt(language: string, currentQuizzes: string, option: Option) {
   return `
 
 ### Instructions:
@@ -140,6 +140,7 @@ async function callGeminiSummarize({ modelName, prompt }: GeminiPayload): Promis
 
 export async function generateQuiz(language: string, quizzes: string, option: Option) {
   const prompt = generateSummaryPrompt(language, quizzes, option)
+  console.log('Prompt:', prompt)
   return await retryWithBackoff((modelName) => callGeminiSummarize({ modelName, prompt }))
 }
 

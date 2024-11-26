@@ -39,6 +39,7 @@
     "highlight.js": "^11.9.0",
     "nuxt": "3.14.159",
     "nuxt-security": "^2.1.2",
+    "openai": "^4.73.0",
     "postcss": "^8.4.33",
     "postcss-import": "^16.0.0",
     "prettier": "^3.1.1",

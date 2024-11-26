@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/api/**': {
-        proxy: 'https://quizzfly-ai.vercel.app/api/**',
+        // proxy: 'https://quizzfly-ai.vercel.app/api/**',
         cors: true,
       },
     },
