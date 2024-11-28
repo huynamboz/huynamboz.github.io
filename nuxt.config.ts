@@ -40,10 +40,17 @@ export default defineNuxtConfig({
       },
     },
     routeRules: {
-      '/api/**': {
-        proxy: 'https://quizzfly-ai.vercel.app/api/**',
-        cors: true,
-      },
+      '/api/**': (() => {
+        if (process.env.PROXY_ENABLED) {
+          return {
+            proxy: 'https://quizzfly-ai.vercel.app/api/**',
+            cors: true,
+          }
+        }
+        return {
+          cors: true,
+        }
+      })(),
     },
     prerender: {
       failOnError: false,
