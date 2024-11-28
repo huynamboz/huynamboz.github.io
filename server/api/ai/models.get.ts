@@ -1,5 +1,8 @@
 import { modelAI } from '~/server/utils/models'
 
 export default defineEventHandler(() => {
-  return modelAI
+  console.log('modelAI', modelAI)
+  return {
+    data: modelAI,
+  }
 })
