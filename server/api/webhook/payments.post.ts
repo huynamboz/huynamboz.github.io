@@ -6,6 +6,7 @@ export default eventHandler(async (event) => {
 
   const { data, error } = await client.from('payments').insert({ description, price: amount })
 
+  console.log({ data, error })
   if (error) {
     throw errorHandler({ statusCode: 400, message: error.message })
   }
