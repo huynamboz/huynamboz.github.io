@@ -131,7 +131,9 @@ const url = ref<string>('')
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
               <div class="text-sm text-gray-900">
-                {{ new Date(collaborator.created_at).toLocaleString() }}
+                {{
+                  new Date(collaborator.created_at).toISOString().replace('T', ' - ').slice(0, -5)
+                }}
               </div>
             </td>
           </tr>
