@@ -122,7 +122,7 @@ const url = ref<string>('')
             :class="{ 'bg-green-50': collaborator.new }"
           >
             <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900 truncate max-w-[200px]">
+              <div class="text-sm text-gray-900 truncate max-w-[40vw]">
                 {{ collaborator.description }}
               </div>
             </td>
