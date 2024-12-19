@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxt/image',
     '@nuxtjs/supabase',
-    'nuxt-security',
+    // 'nuxt-security',
   ],
 
   nitro: {
