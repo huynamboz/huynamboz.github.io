@@ -64,6 +64,9 @@ const showSettings = ref<boolean>(false)
       <NuxtLink to="https://github.com/huynamboz" target="_blank">
         <Icon name="pajamas:linkedin" size="22" color="black" />
       </NuxtLink>
+      <a href="https://github.com/huynamboz" target="_blank">
+        <Icon name="qlementine-icons:facebook-fill-16" size="22" class="ml-1" />
+      </a>
       <div
         class="ml-3 cursor-pointer hover:bg-slate-300/70 bg-slate-300/50 max-md:p-0 max-md:w-9 h-9 px-4 rounded-xl flex gap-2 text-sm font-bold text-slate-700 justify-center items-center"
         @click="showSettings = !showSettings"

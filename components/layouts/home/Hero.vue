@@ -50,13 +50,16 @@
               About me
             </button>
           </a>
-          <NuxtLink to="https://www.linkedin.com/in/huynamvn/">
-            <button class="font-bold text-sm text-slate-700 flex items-center">
-              <span class="mr-1 text-xl">👋</span>
-              CONTACT
+          <button class="flex gap-1 font-bold text-sm text-slate-700 items-center">
+            <span class="mr-1 text-xl">👋</span>
+            CONTACT
+            <a href="https://www.linkedin.com/in/huynamvn/" target="_blank">
               <Icon name="pajamas:linkedin" size="20" class="ml-1" />
-            </button>
-          </NuxtLink>
+            </a>
+            <a href="https://facebook.com/user.namvn/" target="_blank">
+              <Icon name="qlementine-icons:facebook-fill-16" size="20" class="ml-1" />
+            </a>
+          </button>
         </div>
       </div>
       <!-- end title content -->
