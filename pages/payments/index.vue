@@ -57,7 +57,7 @@ const addInfo = ref<string>('')
 const generateAddInfo = () => {
   // Generate a random addInfo string like "HD123"
   addInfo.value = 'HD' + Math.floor(Math.random() * 900 + 100).toString()
-  url.value = `https://img.vietqr.io/image/VietCapitalBank-9021307147503-compact2.jpg?amount=${amount.value}&addInfo=${addInfo.value}&accountName=Quy%20Vac%20Xin%20Covid`
+  url.value = `https://img.vietqr.io/image/VietCapitalBank-9021307147503-compact2.jpg?amount=${amount.value}&addInfo=${addInfo.value}`
 }
 
 const url = ref<string>('')
@@ -82,7 +82,7 @@ const url = ref<string>('')
       <!-- QR code image display -->
       <div class="mt-5">
         <img
-          :src="`https://img.vietqr.io/image/VietCapitalBank-0984619309-compact2.jpg?amount=${amount}&addInfo=${addInfo}`"
+          :src="url"
           alt="VietQR Payment Image"
           class="w-full max-w-xs"
         />
