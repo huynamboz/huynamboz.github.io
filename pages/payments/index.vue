@@ -16,15 +16,19 @@ interface Collaborator {
   new?: boolean
 }
 
-// Fetch collaborators and get the refresh method provided by useAsyncData
-const { data: collaborators, refresh: refreshCollaborators } = await useAsyncData(
-  'collaborators',
-  async () => {
-    const { data } = await client.from('payments').select('*')
-    return data ? (data.reverse() as Collaborator[]) : []
-  },
-)
-
+const collaborators = ref<Collaborator[]>([])
+// // Fetch collaborators and get the refresh method provided by useAsyncData
+// const { data: collaborators, refresh: refreshCollaborators } = await useAsyncData(
+//   'collaborators',
+//   async () => {
+//     const data = await $fetch<Collaborator[]>('/api/payments/history')
+//     return data ? (data.reverse() as Collaborator[]) : []
+//   },
+// )
+onBeforeMount(async () => {
+  const data = await $fetch<Collaborator[]>('/api/payments/history')
+  collaborators.value = data ? (data.reverse() as Collaborator[]) : []
+})
 // Real-time listener setup
 onMounted(() => {
   realtimeChannel = client
