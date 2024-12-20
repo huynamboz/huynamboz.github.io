@@ -127,7 +127,14 @@ const url = ref<string>('')
               </div>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">{{ collaborator.price }}</div>
+              <div class="text-sm text-gray-900">
+                {{
+                  collaborator.price?.toLocaleString('it-IT', {
+                    style: 'currency',
+                    currency: 'VND',
+                  })
+                }}
+              </div>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
               <div class="text-sm text-gray-900">
