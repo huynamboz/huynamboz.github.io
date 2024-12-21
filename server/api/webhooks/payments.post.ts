@@ -30,15 +30,24 @@ export default eventHandler(async (event) => {
 
   if (!latestTransactionTime || transactionTime > latestTransactionTime) {
     // Ghi thông tin vào database
-    const { data, error } = await client
+    const { error } = await client
       .from('payments')
       .insert({ description, price: amount, created_at: transactionTime } as any)
 
-    console.log({ data, error })
     if (error) {
       throw errorHandler({ statusCode: 400, message: error.message })
     }
 
+    const { data: webhooks } = await client.from('webhooks').select('*')
+
+    useNitroApp().hooks.callHook('telegram', 'New payment', {
+      description,
+      amount,
+    })
+    useNitroApp().hooks.callHook('webhooks:call', {
+      data: { amount, description },
+      webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
+    })
     return {
       description,
       amount,

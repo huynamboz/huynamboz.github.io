@@ -7,6 +7,7 @@ definePageMeta({ layout: 'page' })
 const client = useSupabaseClient()
 
 let realtimeChannel: RealtimeChannel
+const isLoading = ref<boolean>(false)
 
 interface Collaborator {
   id: string
@@ -15,19 +16,27 @@ interface Collaborator {
   created_at: string
   new?: boolean
 }
+interface Webhook {
+  id: string
+  endpoint: string
+  created_at: string
+}
+
+const webhooks = ref<Webhook[]>([])
+// Fetch webhooks and get the refresh method provided by useAsyncData
+
+const fetchWebhooks = async () => {
+  const data = await $fetch<Webhook[]>('/api/webhooks')
+  webhooks.value = data ? (data.reverse() as Webhook[]) : []
+}
 
 const collaborators = ref<Collaborator[]>([])
-// // Fetch collaborators and get the refresh method provided by useAsyncData
-// const { data: collaborators, refresh: refreshCollaborators } = await useAsyncData(
-//   'collaborators',
-//   async () => {
-//     const data = await $fetch<Collaborator[]>('/api/payments/history')
-//     return data ? (data.reverse() as Collaborator[]) : []
-//   },
-// )
+
 onBeforeMount(async () => {
   const data = await $fetch<Collaborator[]>('/api/payments/history')
-  collaborators.value = data ? (data.reverse() as Collaborator[]) : []
+  collaborators.value = data ? (data as Collaborator[]) : []
+
+  fetchWebhooks()
 })
 // Real-time listener setup
 onMounted(() => {
@@ -61,34 +70,169 @@ const generateAddInfo = () => {
 }
 
 const url = ref<string>('')
+
+const payloadExample = ref<string>(
+  JSON.stringify(
+    {
+      amount: 2000,
+      description: 'HD123',
+    },
+    null,
+    2,
+  ),
+)
+
+const handleExecuteWebhook = async (id: string) => {
+  isLoading.value = true
+  try {
+    const payloadJSON = JSON.parse(payloadExample.value)
+    await $fetch(`/api/webhooks/execute`, {
+      method: 'POST',
+      body: {
+        id,
+        payload: payloadJSON,
+      },
+    })
+    useNuxtApp().$toast.success('Webhook executed successfully')
+  } catch (error) {
+    console.error(error)
+    useNuxtApp().$toast.error('Failed to execute webhook')
+  }
+  isLoading.value = false
+}
+const webhookEndpoint = ref<string>('')
+const handleAddWebhook = async () => {
+  isLoading.value = true
+  try {
+    if (!webhookEndpoint.value) {
+      useNuxtApp().$toast.error('Webhook endpoint is required')
+      return
+    }
+    await $fetch(`/api/webhooks/add`, {
+      method: 'POST',
+      body: {
+        endpoint: webhookEndpoint.value,
+      },
+    })
+    useNuxtApp().$toast.success('Webhook added successfully')
+    fetchWebhooks()
+  } catch (error) {
+    console.error(error)
+    useNuxtApp().$toast.error('Failed to add webhook')
+  }
+  isLoading.value = false
+}
+
+const handleDeleteWebhook = async (id: string) => {
+  isLoading.value = true
+  try {
+    await $fetch(`/api/webhooks/delete`, {
+      method: 'POST',
+      body: {
+        id,
+      },
+    })
+    useNuxtApp().$toast.success('Webhook deleted successfully')
+    fetchWebhooks()
+  } catch (error) {
+    console.error(error)
+    useNuxtApp().$toast.error('Failed to delete webhook')
+  }
+  isLoading.value = false
+}
 </script>
 
 <template>
   <div class="pt-20 px-5">
     <!-- Form for amount input and create button -->
-    <div class="flex flex-col items-center text-center border rounded-2xl p-5">
-      <div class="mb-5">
-        <label for="amount" class="block text-sm font-medium text-gray-700">Enter Amount</label>
-        <input
-          id="amount"
-          v-model="amount"
-          type="number"
-          class="mt-2 p-2 border border-gray-300 rounded-md"
-          placeholder="Enter amount"
-          @input="generateAddInfo"
-        />
-      </div>
+    <div class="max-md:flex-col flex w-full items-stretch gap-5">
+      <div class="flex-[2] max-h-[600px] overflow-hidden flex flex-col border rounded-2xl p-5 pt-2">
+        <div class="flex justify-between items-center">
+          <p class="flex-1 text-sm font-semibold">Webhooks</p>
+          <div class="flex-1 flex gap-2">
+            <input
+              v-model="webhookEndpoint"
+              type="text"
+              class="text-xs outline-none w-full border p-2 py-1 rounded-lg"
+              placeholder="ex: https://example.com/webhook"
+            />
+            <button
+              class="bg-accent-600 text-white px-5 py-1 text-xs rounded-lg"
+              @click="handleAddWebhook"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+        <p class="text-sm mt-5">Payload</p>
+        <textarea
+          id=""
+          v-model="payloadExample"
+          class="min-h-[120px] border p-2 rounded-2xl w-full outline-none"
+          name=""
+        ></textarea>
 
-      <!-- QR code image display -->
-      <div class="mt-5">
-        <img
-          :src="url"
-          alt="VietQR Payment Image"
-          class="w-full max-w-xs"
-        />
-        <p>
-          Description: <span class="font-bold">{{ addInfo }}</span>
+        <p class="text-xs text-gray-500">
+          <span class="font-semibold">Note:</span> This is an example payload that will be sent to
+          your webhook URL when a new payment is made.
         </p>
+
+        <div class="flex items-center gap-2 pt-4 pb-1">
+          <p class="text-sm font-semibold">Webhook urls</p>
+          <div v-if="isLoading" class="flex items-center gap-2">
+            <Icon name="svg-spinners:bars-rotate-fade" class="w-5 h-5 animate-spin" />
+            <p class="text-xs">Executing...</p>
+          </div>
+        </div>
+
+        <!-- <p class="text-sm text-gray-500">No webhook urls added yet.</p> -->
+        <ul class="flex flex-col gap-2 text-sm text-gray-500 overflow-y-auto">
+          <li
+            v-for="webhook in webhooks"
+            :key="webhook.id"
+            class="flex gap-2 justify-between border-b pb-2"
+          >
+            <div class="flex-1 overflow-hidden">
+              <p class="text-gray-900 text-sm font-medium">{{ webhook.endpoint }}</p>
+              <p class="text-xs text-gray-400">
+                {{ new Date(webhook.created_at).toISOString().replace('T', ' - ').slice(0, -5) }}
+              </p>
+            </div>
+            <button
+              class="bg-accent-600 text-xs text-white h-6 flex items-center px-2 rounded-lg"
+              @click="handleExecuteWebhook(webhook.id)"
+            >
+              Execute
+            </button>
+            <button
+              class="bg-red-700 text-xs text-white h-6 flex items-center px-2 rounded-lg"
+              @click="handleDeleteWebhook(webhook.id)"
+            >
+              delete
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-1 flex flex-col items-center text-center border rounded-2xl p-5">
+        <div class="mb-5">
+          <label for="amount" class="block text-sm font-medium text-gray-700">Enter Amount</label>
+          <input
+            id="amount"
+            v-model="amount"
+            type="number"
+            class="mt-2 p-2 border border-gray-300 rounded-md"
+            placeholder="Enter amount"
+            @input="generateAddInfo"
+          />
+        </div>
+
+        <!-- QR code image display -->
+        <div class="mt-5">
+          <img :src="url" alt="VietQR Payment Image" class="w-full max-w-xs" />
+          <p>
+            Description: <span class="font-bold">{{ addInfo }}</span>
+          </p>
+        </div>
       </div>
     </div>
 

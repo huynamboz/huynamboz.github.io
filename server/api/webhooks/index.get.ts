@@ -3,15 +3,11 @@ import { serverSupabaseClient } from '#supabase/server'
 export default eventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
 
-  // sort created_at in descending order
-  const { data } = await client
-    .from('payments')
-    .select('*')
-    .order('created_at', { ascending: false })
+  const { data } = await client.from('webhooks').select('*')
   console.log(data)
   if (data) {
     return data
   } else {
-    return null
+    return []
   }
 })
