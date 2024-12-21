@@ -50,6 +50,7 @@ onMounted(() => {
           ...payload.new,
           new: true,
         } as Collaborator)
+      useNuxtApp().$toast.success(`Have new payment ${payload.new.price}`)
     })
   realtimeChannel.subscribe()
   generateAddInfo()
