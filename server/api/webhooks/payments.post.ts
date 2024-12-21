@@ -56,6 +56,7 @@ export default eventHandler(async (event) => {
     nitroApp.hooks.callHook('telegram', 'New payment', {
       description: transaction.txnDesc,
       amount: transaction.txnAmount,
+      transactionTime,
     })
 
     // Gửi thông báo webhook
