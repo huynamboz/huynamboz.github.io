@@ -13,7 +13,7 @@ export default eventHandler(async (event) => {
   const { data: latestPayment, error: fetchError } = await client
     .from('payments')
     .select('created_at, transaction_time')
-    .order('created_at', { ascending: true })
+    .order('created_at', { ascending: false })
     .limit(1)
 
   if (fetchError) {
