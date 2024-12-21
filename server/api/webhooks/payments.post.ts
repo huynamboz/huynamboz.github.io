@@ -12,8 +12,8 @@ export default eventHandler(async (event) => {
   // Lấy thời gian giao dịch mới nhất trong database bằng transaction_time
   const { data: latestPayment, error: fetchError } = await client
     .from('payments')
-    .select('transaction_time')
-    .order('transaction_time', { ascending: true })
+    .select('created_at, transaction_time')
+    .order('created_at', { ascending: true })
     .limit(1)
 
   if (fetchError) {
@@ -34,6 +34,7 @@ export default eventHandler(async (event) => {
     }
 
     // Nếu giao dịch cũ hơn giao dịch mới nhất, dừng hàm
+    console.log(transactionTime, latestTransactionTime, transactionTime <= latestTransactionTime)
     if (latestTransactionTime && transactionTime <= latestTransactionTime) {
       break
     }
@@ -53,11 +54,6 @@ export default eventHandler(async (event) => {
     addedTransactionsCount++
 
     // Gửi thông báo qua Telegram
-    nitroApp.hooks.callHook('telegram', 'New payment', {
-      description: transaction.txnDesc,
-      amount: transaction.txnAmount,
-      transactionTime,
-    })
 
     // Gửi thông báo webhook
     const { data: webhooks } = await client.from('webhooks').select('*')
@@ -69,5 +65,9 @@ export default eventHandler(async (event) => {
   }
 
   // Trả về số lượng giao dịch đã được thêm vào
+  nitroApp.hooks.callHook(
+    'telegram',
+    `${addedTransactionsCount} transactions processed successfully`,
+  )
   return { message: `${addedTransactionsCount} transactions processed successfully` }
 })
