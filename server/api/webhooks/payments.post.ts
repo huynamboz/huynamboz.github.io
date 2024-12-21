@@ -2,61 +2,71 @@ import { serverSupabaseClient } from '#supabase/server'
 
 export default eventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
-  const { transaction } = await readBody(event) // Lấy body chứa thông tin giao dịch
+  const { transactions } = await readBody(event) // Lấy mảng giao dịch từ body request
+  const nitroApp = useNitroApp()
 
-  // Trích xuất thông tin giao dịch từ body
-  const amount = transaction.txnAmount || 0 // Số tiền giao dịch
-  const description = transaction.txnDesc || 'No description' // Mô tả giao dịch
-  const transactionTime = new Date(transaction.txnTimeTimestamp) // Thời gian giao dịch
-
-  if (!transactionTime) {
-    throw errorHandler({ statusCode: 400, message: 'Transaction time is missing' })
+  if (!transactions || !Array.isArray(transactions)) {
+    throw errorHandler({ statusCode: 400, message: 'Invalid transactions data' })
   }
 
-  // Lấy thời gian giao dịch mới nhất trong database
+  // Lấy thời gian giao dịch mới nhất trong database bằng transaction_time
   const { data: latestPayment, error: fetchError } = await client
     .from('payments')
-    .select('created_at')
-    .order('created_at', { ascending: false })
+    .select('transaction_time')
+    .order('transaction_time', { ascending: true })
     .limit(1)
 
   if (fetchError) {
     throw errorHandler({ statusCode: 400, message: fetchError.message })
   }
 
-  // Kiểm tra nếu giao dịch mới có thời gian mới hơn giao dịch trong database
-  const latestTransactionTime =
-    latestPayment && latestPayment[0] ? new Date(latestPayment[0].created_at) : null
+  const latestTransactionTime = latestPayment?.[0]?.transaction_time || null
 
-  if (!latestTransactionTime || transactionTime > latestTransactionTime) {
-    // Ghi thông tin vào database
-    const { error } = await client
-      .from('payments')
-      .insert({ description, price: amount, created_at: transactionTime } as any)
+  // Đếm số giao dịch được thêm vào DB
+  let addedTransactionsCount = 0
+
+  // Duyệt qua các giao dịch
+  for (const transaction of transactions) {
+    const transactionTime = transaction.transactionTime // Sử dụng transactionTime từ body request
+
+    if (!transactionTime) {
+      throw errorHandler({ statusCode: 400, message: 'Invalid transaction time' })
+    }
+
+    // Nếu giao dịch cũ hơn giao dịch mới nhất, dừng hàm
+    if (latestTransactionTime && transactionTime <= latestTransactionTime) {
+      break
+    }
+
+    // Thêm giao dịch mới vào database
+    const { error } = await client.from('payments').insert({
+      description: transaction.txnDesc || 'No description',
+      price: transaction.txnAmount || 0,
+      transaction_time: transactionTime, // Lưu transaction_time dưới dạng chuỗi
+    } as any)
 
     if (error) {
       throw errorHandler({ statusCode: 400, message: error.message })
     }
 
+    // Tăng số lượng giao dịch đã được thêm vào
+    addedTransactionsCount++
+
+    // Gửi thông báo qua Telegram
+    nitroApp.hooks.callHook('telegram', 'New payment', {
+      description: transaction.txnDesc,
+      amount: transaction.txnAmount,
+    })
+
+    // Gửi thông báo webhook
     const { data: webhooks } = await client.from('webhooks').select('*')
 
-    useNitroApp().hooks.callHook('telegram', 'New payment', {
-      description,
-      amount,
-    })
-    useNitroApp().hooks.callHook('webhooks:call', {
-      data: { amount, description },
+    nitroApp.hooks.callHook('webhooks:call', {
+      data: { amount: transaction.txnAmount, description: transaction.txnDesc },
       webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
     })
-    return {
-      description,
-      amount,
-      transactionTime,
-    }
-  } else {
-    // Nếu giao dịch không mới hơn, không thêm vào database
-    return {
-      message: 'Transaction is older than the latest one in the database.',
-    }
   }
+
+  // Trả về số lượng giao dịch đã được thêm vào
+  return { message: `${addedTransactionsCount} transactions processed successfully` }
 })

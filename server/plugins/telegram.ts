@@ -1,6 +1,7 @@
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('telegram', async (message: string, code?: object) => {
     try {
+      console.log('Call tele')
       await $fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
         method: 'POST',
         body: {
