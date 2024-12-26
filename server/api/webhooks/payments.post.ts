@@ -4,6 +4,7 @@ export default eventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
   const { transactions } = await readBody(event) // Lấy mảng giao dịch từ body request
   const nitroApp = useNitroApp()
+  const { data: webhooks } = await client.from('webhooks').select('*')
 
   if (!transactions || !Array.isArray(transactions)) {
     throw errorHandler({ statusCode: 400, message: 'Invalid transactions data' })
@@ -54,9 +55,8 @@ export default eventHandler(async (event) => {
     addedTransactionsCount++
 
     // Gửi thông báo qua Telegram
-
+    nitroApp.hooks.callHook('telegram', `${transaction.txnAmount}$ processed successfully`)
     // Gửi thông báo webhook
-    const { data: webhooks } = await client.from('webhooks').select('*')
 
     nitroApp.hooks.callHook('webhooks:call', {
       data: { amount: transaction.txnAmount, description: transaction.txnDesc },
@@ -65,9 +65,5 @@ export default eventHandler(async (event) => {
   }
 
   // Trả về số lượng giao dịch đã được thêm vào
-  nitroApp.hooks.callHook(
-    'telegram',
-    `${addedTransactionsCount} transactions processed successfully`,
-  )
   return { message: `${addedTransactionsCount} transactions processed successfully` }
 })
