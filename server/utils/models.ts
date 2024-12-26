@@ -9,19 +9,13 @@ export const modelAI = [
     name: 'Meta Llama 3.1 70B (best)',
     value: 'meta-llama/Meta-Llama-3.1-70B-Instruct',
     premium: false,
-    logo: 'https://a-us.storyblok.com/f/1019538/1024x1024/f7bfdbf595/llama-3-1-8b.png',
+    logo: 'https://a-us.storyblok.com/f/1019538/1024x1024/6eb54fbd61/llama-3-1-70b.png',
   },
   {
     name: 'Meta Llama 3.1 8B (faster)',
     value: 'meta-llama/Meta-Llama-3.1-8B-Instruct',
     premium: false,
     logo: 'https://a-us.storyblok.com/f/1019538/1024x1024/f7bfdbf595/llama-3-1-8b.png',
-  },
-  {
-    name: 'Meta-Llama-3.1-70B-Instruct',
-    value: 'meta-llama/Meta-Llama-3.1-70B-Instruct',
-    premium: false,
-    logo: 'https://a-us.storyblok.com/f/1019538/1024x1024/6eb54fbd61/llama-3-1-70b.png',
   },
   {
     name: 'Meta-Llama-3-70B-Instruct',
