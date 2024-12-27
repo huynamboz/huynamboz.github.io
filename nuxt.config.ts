@@ -32,7 +32,11 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     'nuxt-security',
   ],
-
+  security: {
+    headers: {
+      contentSecurityPolicy: false,
+    },
+  },
   nitro: {
     vercel: {
       functions: {
