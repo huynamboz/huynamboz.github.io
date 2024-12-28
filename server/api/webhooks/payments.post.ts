@@ -59,7 +59,11 @@ export default eventHandler(async (event) => {
     // Gửi thông báo webhook
 
     nitroApp.hooks.callHook('webhooks:call', {
-      data: { amount: transaction.txnAmount, description: transaction.txnDesc },
+      data: {
+        amount: transaction.txnAmount,
+        description: transaction.txnDesc,
+        transaction_time: transactionTime,
+      },
       webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
     })
   }

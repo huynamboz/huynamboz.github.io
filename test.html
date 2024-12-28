@@ -47,58 +47,107 @@
 
         // Xử lý sự kiện khi nhấn chuột
         canvas.on('mouse:down', function (options) {
-          console.log("Mouse down", isDrawing, isDrawingMode);
-            if (!isDrawingMode) return;
+            var evt = options.e;
 
-            isDrawing = true;
-            const pointer = canvas.getPointer(options.e);
-            startX = pointer.x;
-            startY = pointer.y;
+            // Handle drawing mode (create triangle)
+            if (isDrawingMode && !this.isDragging) {
+                console.log("Mouse down in draw mode", isDrawing, isDrawingMode);
+                if (!isDrawing) {
+                    isDrawing = true;
+                    const pointer = canvas.getPointer(evt);
+                    startX = pointer.x;
+                    startY = pointer.y;
 
-            triangle = new fabric.Triangle({
-                left: startX,
-                top: startY,
-                width: 0,
-                height: 0,
-                fill: 'rgba(0, 0, 255, 0.5)',
-                selectable: false,
-                evented: false, // Tắt sự kiện trong khi vẽ
-            });
+                    triangle = new fabric.Triangle({
+                        left: startX,
+                        top: startY,
+                        width: 0,
+                        height: 0,
+                        fill: 'rgba(0, 0, 255, 0.5)',
+                        selectable: false,
+                        evented: false, // Disable events while drawing
+                    });
 
-            canvas.add(triangle);
+                    canvas.add(triangle);
+                }
+            }
+
+            // Handle dragging (move canvas view with shift key)
+            if (evt.shiftKey === true) {
+                this.isDragging = true;
+                this.selection = false;
+                this.lastPosX = evt.clientX;
+                this.lastPosY = evt.clientY;
+            }
         });
 
         // Xử lý sự kiện khi kéo chuột
         canvas.on('mouse:move', function (options) {
-            if (!isDrawing) return;
+            var evt = options.e;
 
-            const pointer = canvas.getPointer(options.e);
-            const width = pointer.x - startX;
-            const height = pointer.y - startY;
+            // Update triangle dimensions during drawing
+            if (isDrawing) {
+                const pointer = canvas.getPointer(evt);
+                const width = pointer.x - startX;
+                const height = pointer.y - startY;
 
-            triangle.set({
-                width: Math.abs(width),
-                height: Math.abs(height),
-                left: width < 0 ? startX + width : startX,
-                top: height < 0 ? startY + height : startY,
-            });
+                triangle.set({
+                    width: Math.abs(width),
+                    height: Math.abs(height),
+                    left: width < 0 ? startX + width : startX,
+                    top: height < 0 ? startY + height : startY,
+                });
 
-            canvas.renderAll();
+                canvas.renderAll();
+            }
+
+            // Pan the canvas while holding the shift key
+            if (this.isDragging) {
+                var vpt = this.viewportTransform;
+                vpt[4] += evt.clientX - this.lastPosX;
+                vpt[5] += evt.clientY - this.lastPosY;
+                this.requestRenderAll();
+                this.lastPosX = evt.clientX;
+                this.lastPosY = evt.clientY;
+            }
         });
 
         // Xử lý sự kiện khi thả chuột
-        canvas.on('mouse:up', function () {
-          console.log("Mouse up", isDrawing);
-            if (!isDrawing) return;
-            isDrawing = false;
+        canvas.on('mouse:up', function (options) {
+            var evt = options.e;
 
-            // Kích hoạt selectability cho tam giác mới
-            triangle.set({
-                selectable: true,
-                evented: true,
-            });
+            // Complete drawing of triangle
+            if (isDrawing) {
+                console.log("Mouse up, finishing triangle drawing", isDrawing);
+                isDrawing = false;
 
-            canvas.renderAll();
+                // Enable selectability for the triangle after drawing
+                triangle.set({
+                    selectable: true,
+                    evented: true,
+                });
+
+                canvas.renderAll();
+            }
+
+            // Complete dragging
+            if (this.isDragging) {
+                this.setViewportTransform(this.viewportTransform);
+                this.isDragging = false;
+                this.selection = true;
+            }
+        });
+
+        // Zooming functionality with mouse wheel
+        canvas.on('mouse:wheel', function(opt) {
+          var delta = opt.e.deltaY;
+          var zoom = canvas.getZoom();
+          zoom *= 0.999 ** delta;
+          if (zoom > 20) zoom = 20;
+          if (zoom < 0.01) zoom = 0.01;
+          canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+          opt.e.preventDefault();
+          opt.e.stopPropagation();
         });
 
         // Log sự kiện chọn đối tượng

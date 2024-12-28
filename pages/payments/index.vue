@@ -78,6 +78,7 @@ const payloadExample = ref<string>(
     {
       amount: 2000,
       description: 'HD123',
+      transaction_time: '28/12/2024 12:10:00 +0700',
     },
     null,
     2,

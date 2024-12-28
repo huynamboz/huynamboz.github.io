@@ -2,6 +2,7 @@ interface WebhookData {
   data: {
     amount: number
     description: string
+    transaction_time: string
   }
   webhookUrls: string[]
 }
