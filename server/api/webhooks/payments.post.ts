@@ -62,7 +62,7 @@ export default eventHandler(async (event) => {
       data: {
         amount: transaction.txnAmount,
         description: transaction.txnDesc,
-        transaction_time: transactionTime,
+        transaction_time: transaction.txnTimeTimestamp,
       },
       webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
     })
