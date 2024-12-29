@@ -39,5 +39,5 @@ export default defineNitroPlugin((nitroApp) => {
   //     console.error('Webhook error:', error)
   //     sendTelegram('Call webhook error', error as any)
   //   }
-  // })
+  })
   })
