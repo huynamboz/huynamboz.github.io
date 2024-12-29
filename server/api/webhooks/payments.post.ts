@@ -1,4 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server'
+import { callWebhooks } from '~/server/plugins/webhooks'
 
 export default eventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
@@ -65,6 +66,14 @@ export default eventHandler(async (event) => {
     //   },
     //   webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
     // })
+    await callWebhooks({
+      data: {
+        amount: transaction.txnAmount,
+        description: transaction.txnDesc,
+        transaction_time: transaction.txnTimeTimestamp,
+      },
+      webhookUrls: webhooks ? webhooks.map((webhook) => (webhook as any).endpoint) : [],
+    })
   }
   if (addedTransactionsCount > 0)
     nitroApp.hooks.callHook('telegram', `${addedTransactionsCount}$ processed successfully`)
