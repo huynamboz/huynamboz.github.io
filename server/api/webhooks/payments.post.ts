@@ -55,7 +55,7 @@ export default eventHandler(async (event) => {
     addedTransactionsCount++
 
     // Gửi thông báo qua Telegram
-    nitroApp.hooks.callHook('telegram', `${transaction.txnAmount}$ processed successfully`)
+    // nitroApp.hooks.callHook('telegram', `${transaction.txnAmount}$ processed successfully`)
     // Gửi thông báo webhook
 
     nitroApp.hooks.callHook('webhooks:call', {
