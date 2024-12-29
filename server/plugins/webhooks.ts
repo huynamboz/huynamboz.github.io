@@ -7,10 +7,10 @@ interface WebhookData {
   webhookUrls: string[]
 }
 export default defineNitroPlugin((nitroApp) => {
-  nitroApp.hooks.hook('webhooks:call', async (data: WebhookData) => {
+  nitroApp.hooks.hook('webhooks', async (data: WebhookData) => {
     const { data: webhookData, webhookUrls } = data
     console.log('Webhook executing --------------->>>', webhookUrls)
-    nitroApp.hooks.callHook('telegram', webhookUrls.join(','))
+    sendTelegram('Send webhook')
     try {
       await Promise.all(
         webhookUrls.map((url) =>
@@ -22,13 +22,14 @@ export default defineNitroPlugin((nitroApp) => {
             },
           }).catch((error) => {
             console.error(`Error with URL ${url}:`, error)
-            nitroApp.hooks.callHook('telegram', 'Webhook error', error)
+            sendTelegram('Send webhook error', error)
             return null // Trả về null nếu có lỗi để không làm reject Promise.all
           }),
         ),
       )
     } catch (error) {
       console.error('Webhook error:', error)
+      sendTelegram('Call webhook error', error as any)
     }
   })
 })
