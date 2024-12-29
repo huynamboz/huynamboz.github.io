@@ -3,7 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import type { RealtimeChannel } from '@supabase/supabase-js'
 
 definePageMeta({ layout: 'page' })
-
+const route = useRoute()
+const webhookQuery = route.query.webhook
 const client = useSupabaseClient()
 
 let realtimeChannel: RealtimeChannel
@@ -149,7 +150,10 @@ const handleDeleteWebhook = async (id: string) => {
   <div class="pt-20 px-5">
     <!-- Form for amount input and create button -->
     <div class="max-md:flex-col flex w-full items-stretch gap-5">
-      <div class="flex-[2] max-h-[600px] overflow-hidden flex flex-col border rounded-2xl p-5 pt-2">
+      <div
+        v-if="webhookQuery"
+        class="flex-[2] max-h-[600px] overflow-hidden flex flex-col border rounded-2xl p-5 pt-2"
+      >
         <div class="flex justify-between items-center">
           <p class="flex-1 text-sm font-semibold">Webhooks</p>
           <div class="flex-1 flex gap-2">
