@@ -28,6 +28,9 @@ definePageMeta({ layout: 'page' })
     <section id="project" class="flex w-full justify-center">
       <LayoutsHomeProject />
     </section>
+    <section id="all-project" class="flex w-full justify-center">
+      <LayoutsHomeAllProject />
+    </section>
   </div>
 </template>
 

@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/supabase',
     'nuxt-security',
+    '@nuxt/content',
   ],
   security: {
     headers: {

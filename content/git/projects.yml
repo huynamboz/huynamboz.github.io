@@ -1,0 +1,8 @@
+- title: Vue drag scroller
+  description: A Vue directive that can make any element draggable and scrollable by mouse.
+  url: https://www.npmjs.com/package/vue-drag-scroller
+  image: 'http://localhost:3000/_ipx/f_webp/images/docs/vue-drag-scroller/bg.png'
+- title: 'Quizzfly: Game hub'
+  description: 'A real-time platform for creating and hosting online quizzes, enabling interactive and engaging gameplay experiences for participants.'
+  url: https://github.com/Quizzfly/quizzfly
+  image: 'https://raw.githubusercontent.com/Quizzfly/quizzfly/master/docs/images/image-3.png'

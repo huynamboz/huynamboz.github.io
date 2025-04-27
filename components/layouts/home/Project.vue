@@ -77,7 +77,7 @@ onMounted(() => {
             :initial="{ opacity: 0, x: -100 }"
             :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
             :delay="100 * index"
-            class="opacity-0 flex gap-5 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px] cursor-pointer"
+            class="min-w-[300px] opacity-0 flex gap-5 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px] cursor-pointer"
             :class="{ 'border-accent-600  text-accent-600': currentProject?.link === project.link }"
             @click="currentProject = project"
           >
