@@ -7,27 +7,33 @@ const intervalId = ref<number | null>(null)
 const imageUrl = ref<string>('')
 
 async function generate() {
-  if (!prompt.value || !apiKey.value) {
-    useNuxtApp().$toast.error('Please enter a prompt and API key.')
-    return
-  }
+  try {
+    if (!prompt.value || !apiKey.value) {
+      useNuxtApp().$toast.error('Please enter a prompt and API key.')
+      return
+    }
 
-  const response = await $fetch('https://quizzfly.site/generate-image', {
-    method: 'POST',
-    body: {
-      prompt: prompt.value,
-    },
-    headers: {
-      'x-api-key': apiKey.value,
-    },
-  })
-  jobId.value = response.job_id
-  imageUrl.value = ''
-  if (intervalId.value) {
-    clearInterval(intervalId.value)
+    const response = await $fetch('https://quizzfly.site/generate-image', {
+      method: 'POST',
+      body: {
+        prompt: prompt.value,
+      },
+      headers: {
+        'x-api-key': apiKey.value,
+      },
+    })
+    jobId.value = response.job_id
+    imageUrl.value = ''
+    if (intervalId.value) {
+      clearInterval(intervalId.value)
+    }
+    intervalId.value = setInterval(intervalCheck, 2000)
+    console.log('Response:', response)
+  } catch (error) {
+    useNuxtApp().$toast.error('Invalid API key or prompt.')
+    console.error('Error:', error)
+
   }
-  intervalId.value = setInterval(intervalCheck, 2000)
-  console.log('Response:', response)
 }
 
 function intervalCheck() {
@@ -61,24 +67,16 @@ function intervalCheck() {
       <div class="flex gap-5 flex-col justify-center items-center">
         <div class="min-w-[400px] max-w-[500px]">
           <h2 class="text-lg font-bold">API key:</h2>
-          <input
-            v-model="apiKey"
-            type="text"
-            class="text-sm outline-none w-full border p-2 py-1 rounded-lg"
-            placeholder="API key here: xxxx-xxxx-xxxx"
-          />
+          <input v-model="apiKey" type="text" class="text-sm outline-none w-full border p-2 py-1 rounded-lg"
+            placeholder="API key here: xxxx-xxxx-xxxx" />
         </div>
         <div class="min-w-[400px] max-w-[500px]">
           <h2 class="text-lg font-bold">Prompt:</h2>
           <div class="flex gap-2 w-full">
-            <input
-              v-model="prompt"
-              type="text"
-              class="text-sm outline-none w-full border p-2 py-1 rounded-lg"
-              placeholder="Enter your prompt here"
-            />
+            <input v-model="prompt" type="text" class="text-sm outline-none w-full border p-2 py-1 rounded-lg"
+              placeholder="Enter your prompt here" />
             <button class="bg-accent-600 text-white px-5 py-1 text-xs rounded-lg" @click="generate">
-              {{ intervalId ? 'Generating...' : 'Generate'}}</button>
+              {{ intervalId ? 'Generating...' : 'Generate' }}</button>
           </div>
         </div>
       </div>
