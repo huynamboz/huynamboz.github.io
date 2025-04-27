@@ -70,7 +70,9 @@ export default defineNuxtConfig({
   image: {
     format: ['webp'],
   },
-
+  build: {
+    transpile: ['unicorn-magic'],
+  },
   css: [
     '~/assets/css/tailwind.css',
     '~/assets/css/global.css',
