@@ -5,6 +5,13 @@ const apiKey = ref<string>('')
 const jobId = ref<string>('')
 const intervalId = ref<number | null>(null)
 const imageUrl = ref<string>('')
+const route = useRoute()
+
+onBeforeMount(() => {
+  if (route.query.apikey) {
+    apiKey.value = route.query.apikey as string
+  }
+})
 
 async function generate() {
   try {
