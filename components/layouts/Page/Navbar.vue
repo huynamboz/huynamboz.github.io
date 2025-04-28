@@ -41,7 +41,7 @@ const showSettings = ref<boolean>(false)
       <!-- logo -->
       <NuxtLink to="/" class="flex gap-2 items-center">
         <div class="bg-accent-600 w-6 h-6 text-white rounded-lg text-center text-sm">/</div>
-        <span class="font-bold text-xl">huynam<span class="text-accent-600">boz</span></span>
+        <span class="font-bold text-xl">Gen<span class="text-accent-600">fash</span></span>
       </NuxtLink>
       <!-- menu -->
       <div class="max-md:hidden lg:flex mt-1 ml-5 gap-5">
