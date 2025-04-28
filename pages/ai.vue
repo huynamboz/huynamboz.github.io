@@ -81,7 +81,7 @@ function intervalCheck() {
           <h2 class="text-lg font-bold">Prompt:</h2>
           <div class="flex gap-2 w-full">
             <input v-model="prompt" type="text" class="text-sm outline-none w-full border p-2 py-1 rounded-lg"
-              placeholder="Enter your prompt here" />
+              placeholder="Ex: summer clothes 90s style" />
             <button class="bg-accent-600 text-white px-5 py-1 text-xs rounded-lg" @click="generate">
               {{ intervalId ? 'Generating...' : 'Generate' }}</button>
           </div>
