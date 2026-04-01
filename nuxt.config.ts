@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    '@nuxthub/core',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
