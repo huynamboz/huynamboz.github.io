@@ -18,13 +18,12 @@ export default defineNuxtConfig({
   ],
 
   site: {
-    url: 'https://hinam.nuxt.dev',
+    url: 'https://hinam.pages.dev',
   },
 
   devtools: { enabled: true },
 
   modules: [
-    '@nuxthub/core',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
