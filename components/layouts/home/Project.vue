@@ -1,110 +1,126 @@
 <script lang="ts" setup>
-const projects = ref([
+const projects = [
   {
-    title: 'Vue drag scroller (npm package)',
-    description: 'A Vue directive that can make any element draggable and scrollable by mouse.',
-    link: 'docs/vue-drag-scroller',
+    title: 'Mindrawer',
+    description: 'Impressive whiteboard for sketching anything you want. Built with Nuxt 3, Vue 3, and TailwindCSS.',
+    image: 'https://raw.githubusercontent.com/huynamboz/mindrawer/main/docs/images/1.png',
+    github: 'https://github.com/huynamboz/mindrawer',
+    demo: 'https://mindrawer.pages.dev',
+    tags: ['Nuxt 3', 'Vue 3', 'TailwindCSS'],
+    type: 'github',
+    owner: 'huynamboz',
+    repo: 'mindrawer',
+  },
+  {
+    title: 'Vue Drag Scroller',
+    description: 'A Vue directive that makes any element draggable and scrollable by mouse. Available as an npm package.',
+    image: 'https://github.com/huynamboz/vue-drag-scroller/assets/38585889/57cc7cf2-1273-4416-8fcb-df8262a4af49',
     github: 'https://github.com/huynamboz/vue-drag-scroller',
-    ownerLink: 'https://github.com/huynamboz',
+    demo: 'https://www.npmjs.com/package/vue-drag-scroller',
+    tags: ['Vue 2/3', 'npm', 'Directive'],
+    type: 'npm',
     owner: 'huynamboz',
     repo: 'vue-drag-scroller',
-    img: 'vue-drag-scroller/bg.png',
-    tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
-    type: 'npm',
+    pkg: 'vue-drag-scroller',
   },
-  {
-    title: 'Ecommerce v2',
-    description:
-      'A website help connect people with the best local experts. This is a side project that I built to practice my skills.',
-    link: '/docs/superbad-ecommerce',
-    github: 'https://github.com/huynamboz/huynamboz.github.io',
-    repo: 'superbad-store_frontend',
-    owner: 'superbadteam',
-    ownerLink: 'https://github.com/superbadteam',
-    img: 'ecommerce-v2/thumb.png',
-    tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
-    type: 'github',
-  },
-  {
-    title: 'My Portfolio',
-    description:
-      'An open source portfolio template for developers. This is a side project that I built to practice my skills.',
-    link: 'https://github.com/huynamboz/huynamboz.github.io',
-    github: 'https://github.com/huynamboz/huynamboz.github.io',
-    ownerLink: 'https://github.com/huynamboz',
-    owner: 'huynamboz',
-    repo: 'huynamboz.github.io',
-    img: 'portfolio/preview.png',
-    tags: ['Ecommerce', 'VueJs 3', 'TailwindCSS'],
-    type: 'github',
-  },
-])
+]
 
-const currentProject = ref(projects.value[0])
-onMounted(() => {
-  console.log(currentProject)
+const { data: stats } = await useAsyncData('project-section-stats', async () => {
+  return Promise.all(projects.map(async (p) => {
+    if (p.type === 'github') {
+      try {
+        const res = await $fetch<{ stargazers_count: number; forks_count: number }>(
+          `https://api.github.com/repos/${p.owner}/${p.repo}`,
+          { headers: { Accept: 'application/vnd.github+json' } }
+        )
+        return { stars: res.stargazers_count, forks: res.forks_count }
+      } catch { return { stars: null, forks: null } }
+    }
+    if (p.type === 'npm') {
+      try {
+        const [info, dl] = await Promise.all([
+          $fetch<{ version: string }>(`https://registry.npmjs.org/${p.pkg}/latest`),
+          $fetch<{ downloads: number }>(`https://api.npmjs.org/downloads/point/last-month/${p.pkg}`),
+        ])
+        return { version: info.version, downloads: dl.downloads }
+      } catch { return { version: null, downloads: null } }
+    }
+    return {}
+  }))
 })
 </script>
+
 <template>
   <div class="mt-20 w-full flex flex-col items-center">
-    <!-- header -->
     <div class="content-wrapper">
       <p class="text-accent-700 font-bold text-sm">My impressive project</p>
-      <h2 class="text-4xl text-slate-700 font-bold">Project</h2>
-      <p class="text-base text-slate-700 mt-5">
-        My side project that I built to practice my skills. Let discover it!
-      </p>
-      <div class="mt-5">
-        <NuxtLink
-          to="https://github.com/huynamboz"
-          target="blank"
-          class="text-accent-600 font-bold text-sm bg-accent-100 hover:bg-accent-200 px-5 py-3 rounded-3xl"
-        >
-          learn more
-          <Icon name="fluent:triangle-right-32-filled" size="10" class="ml-2" />
-        </NuxtLink>
-      </div>
+      <h2 class="text-4xl text-slate-700 font-bold">Featured Projects</h2>
+      <p class="text-base text-slate-500 mt-3">Side projects I built and maintain.</p>
     </div>
-    <!-- end header -->
-    <!-- list project -->
-    <div class="flex justify-center background-grid border-t-[1px] mt-20 w-full">
-      <div class="max-md:flex-col max-md:gap-10 content-wrapper mt-8 flex gap-20">
-        <div class="flex flex-col gap-3 flex-1">
-          <div
-            v-for="(project, index) in projects"
-            :key="project.title"
-            v-motion
-            :initial="{ opacity: 0, x: -100 }"
-            :visibleOnce="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="100 * index"
-            class="min-w-[300px] opacity-0 flex gap-5 border-[1px] w-fit bg-white p-5 rounded-2xl md:max-w-[350px] lg:max-w-[500px] cursor-pointer"
-            :class="{ 'border-accent-600  text-accent-600': currentProject?.link === project.link }"
-            @click="currentProject = project"
-          >
-            <Icon
-              v-if="project.type === 'github'"
-              name="uiw:github"
-              size="50"
-              class="min-w-[50px]"
-            />
-            <Icon
-              v-if="project.type === 'npm'"
-              name="carbon:logo-npm"
-              size="50"
-              class="min-w-[50px]"
-            />
-            <div class="">
-              <NuxtLink :to="project.link" class="hover:underline text-sm font-bold">{{
-                project.title
-              }}</NuxtLink>
-              <p class="text-sm mt-2 text-slate-700">
-                {{ project.description }}
-              </p>
+
+    <div class="content-wrapper mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div
+        v-for="(project, index) in projects"
+        :key="project.title"
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visibleOnce="{ opacity: 1, y: 0 }"
+        :delay="150 * index"
+        class="opacity-0 group flex flex-col rounded-2xl border bg-white overflow-hidden hover:shadow-xl transition-shadow duration-300"
+      >
+        <!-- image -->
+        <div class="overflow-hidden h-52 bg-slate-100">
+          <img
+            :src="project.image"
+            :alt="project.title"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+
+        <!-- content -->
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="text-lg font-bold text-slate-800">{{ project.title }}</h3>
+            <div class="flex gap-2 shrink-0">
+              <NuxtLink :to="project.github" target="_blank" class="text-slate-400 hover:text-slate-700 transition-colors">
+                <Icon name="uiw:github" size="20" />
+              </NuxtLink>
+              <NuxtLink :to="project.demo" target="_blank" class="text-slate-400 hover:text-accent-600 transition-colors">
+                <Icon :name="project.type === 'npm' ? 'carbon:logo-npm' : 'ph:arrow-square-out'" size="20" />
+              </NuxtLink>
             </div>
           </div>
-        </div>
-        <div class="flex-auto max-w-[800px] lg:-mt-20 flex-2">
-          <AtomVCodeMockup :project="currentProject" />
+
+          <p class="text-sm text-slate-500 mt-2 flex-1">{{ project.description }}</p>
+
+          <!-- tags -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span
+              v-for="tag in project.tags"
+              :key="tag"
+              class="text-xs bg-accent-50 text-accent-600 border border-accent-200 px-2 py-0.5 rounded-full"
+            >{{ tag }}</span>
+          </div>
+
+          <!-- stats -->
+          <div class="flex gap-4 mt-4 text-xs text-slate-400 border-t pt-4">
+            <template v-if="project.type === 'github'">
+              <span class="flex items-center gap-1">
+                <Icon name="ph:star" size="14" /> {{ stats?.[index]?.stars ?? '–' }}
+              </span>
+              <span class="flex items-center gap-1">
+                <Icon name="ph:git-fork" size="14" /> {{ stats?.[index]?.forks ?? '–' }}
+              </span>
+            </template>
+            <template v-if="project.type === 'npm'">
+              <span class="flex items-center gap-1 text-red-500">
+                <Icon name="carbon:logo-npm" size="14" /> v{{ stats?.[index]?.version ?? '–' }}
+              </span>
+              <span class="flex items-center gap-1">
+                <Icon name="ph:download-simple" size="14" /> {{ stats?.[index]?.downloads?.toLocaleString() ?? '–' }}/month
+              </span>
+            </template>
+          </div>
         </div>
       </div>
     </div>
