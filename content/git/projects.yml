@@ -1,7 +1,24 @@
+- title: Mindrawer
+  description: Impressive whiteboard for sketching anything you want.
+  url: https://github.com/huynamboz/mindrawer
+  image: 'https://raw.githubusercontent.com/huynamboz/mindrawer/main/docs/images/1.png'
 - title: Vue drag scroller
   description: A Vue directive that can make any element draggable and scrollable by mouse.
   url: https://www.npmjs.com/package/vue-drag-scroller
-  image: 'http://localhost:3000/_ipx/f_webp/images/docs/vue-drag-scroller/bg.png'
+  image: 'https://github.com/huynamboz/vue-drag-scroller/assets/38585889/57cc7cf2-1273-4416-8fcb-df8262a4af49'
+- title: DevMock Client
+  description: A lightweight mock backend + mock database built for Frontend Developers.
+  url: https://github.com/huynamboz/devmock-client
+  image: 'https://opengraph.githubassets.com/1/huynamboz/devmock-client'
+- title: Assistant Context
+  description: A Chrome extension that helps you manage and inject context into AI assistants.
+  url: https://chromewebstore.google.com/detail/assistant-context/lhkamnnlijcpcaokmpgmoeaahmhgiama
+  github: https://github.com/huynamboz/assistant-context
+  image: '/images/extension.png'
+- title: GenFash
+  description: A AI fashion generator app built with React Native.
+  url: https://github.com/huynamboz/genfash
+  image: 'https://github.com/huynamboz/genfash/raw/dev/docs/i7.jpg'
 - title: 'Quizzfly: Game hub'
   description: 'A real-time platform for creating and hosting online quizzes, enabling interactive and engaging gameplay experiences for participants.'
   url: https://github.com/Quizzfly/quizzfly
