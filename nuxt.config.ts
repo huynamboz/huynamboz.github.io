@@ -39,10 +39,10 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    vercel: {
-      functions: {
-        maxDuration: 30,
-      },
+    preset: 'cloudflare_module',
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
     },
     routeRules: {
       '/api/ai/**': (() => {
@@ -106,5 +106,5 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2024-11-19',
+  compatibilityDate: '2026-04-01',
 })
