@@ -39,11 +39,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    preset: 'cloudflare_module',
-    cloudflare: {
-      deployConfig: true,
-      nodeCompat: true,
-    },
+    preset: 'cloudflare_pages',
     routeRules: {
       '/api/ai/**': (() => {
         if (process.env.PROXY_ENABLED) {
