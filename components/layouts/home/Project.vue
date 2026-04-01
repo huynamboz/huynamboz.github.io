@@ -102,24 +102,34 @@ const { data: stats } = await useAsyncData('project-section-stats', async () => 
             >{{ tag }}</span>
           </div>
 
-          <!-- stats -->
-          <div class="flex gap-4 mt-4 text-xs text-slate-400 border-t pt-4">
-            <template v-if="project.type === 'github'">
-              <span class="flex items-center gap-1">
-                <Icon name="ph:star" size="14" /> {{ stats?.[index]?.stars ?? '–' }}
-              </span>
-              <span class="flex items-center gap-1">
-                <Icon name="ph:git-fork" size="14" /> {{ stats?.[index]?.forks ?? '–' }}
-              </span>
-            </template>
-            <template v-if="project.type === 'npm'">
-              <span class="flex items-center gap-1 text-red-500">
-                <Icon name="carbon:logo-npm" size="14" /> v{{ stats?.[index]?.version ?? '–' }}
-              </span>
-              <span class="flex items-center gap-1">
-                <Icon name="ph:download-simple" size="14" /> {{ stats?.[index]?.downloads?.toLocaleString() ?? '–' }}/month
-              </span>
-            </template>
+          <!-- stats + view button -->
+          <div class="flex items-center justify-between gap-2 mt-4 border-t pt-4">
+            <div class="flex gap-4 text-xs text-slate-400">
+              <template v-if="project.type === 'github'">
+                <span class="flex items-center gap-1">
+                  <Icon name="ph:star" size="14" /> {{ stats?.[index]?.stars ?? '–' }}
+                </span>
+                <span class="flex items-center gap-1">
+                  <Icon name="ph:git-fork" size="14" /> {{ stats?.[index]?.forks ?? '–' }}
+                </span>
+              </template>
+              <template v-if="project.type === 'npm'">
+                <span class="flex items-center gap-1 text-red-500">
+                  <Icon name="carbon:logo-npm" size="14" /> v{{ stats?.[index]?.version ?? '–' }}
+                </span>
+                <span class="flex items-center gap-1">
+                  <Icon name="ph:download-simple" size="14" /> {{ stats?.[index]?.downloads?.toLocaleString() ?? '–' }}/month
+                </span>
+              </template>
+            </div>
+            <NuxtLink
+              :to="project.demo"
+              target="_blank"
+              class="flex items-center gap-1 text-xs font-semibold text-accent-600 bg-accent-50 hover:bg-accent-100 border border-accent-200 px-3 py-1.5 rounded-full transition-colors shrink-0"
+            >
+              View project
+              <Icon name="ph:arrow-up-right" size="13" />
+            </NuxtLink>
           </div>
         </div>
       </div>
